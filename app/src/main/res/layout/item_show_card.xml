@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_70dp"
+        android:gravity="center_vertical"
+        tools:ignore="RtlHardcoded" />
+    <RelativeLayout
+        android:id="@+id/relativeCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/checkbox"
+        tools:ignore="RtlHardcoded">
+        <RelativeLayout
+            android:id="@+id/rlCard"
+            android:layout_width="@dimen/dimen_220dp"
+            android:layout_height="@dimen/dimen_120dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:background="@drawable/ic_card"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/dimen_22sp"
+            android:textStyle="bold"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            tools:ignore="RtlHardcoded">
+            <TextView
+                android:id="@+id/txtCardName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_40dp"
+                tools:ignore="RtlHardcoded" />
+            <TextView
+                android:id="@+id/txtVisa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/txtCardName"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_40dp"
+                tools:ignore="RtlHardcoded" />
+            <TextView
+                android:id="@+id/txtBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dimen_10sp"
+                android:layout_below="@+id/txtCardName"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginTop="@dimen/dimen_15dp"
+                android:layout_marginLeft="@dimen/dimen_40dp"
+                tools:ignore="RtlHardcoded" />
+            <TextView
+                android:id="@+id/txtBal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="@dimen/dimen_15dp"
+                android:layout_below="@+id/txtBalance"
+                android:layout_marginLeft="@dimen/dimen_40dp"
+                android:textColor="@android:color/white"
+                tools:ignore="RtlHardcoded,SpUsage" />
+        </RelativeLayout>
+            </RelativeLayout>
+
+</RelativeLayout>

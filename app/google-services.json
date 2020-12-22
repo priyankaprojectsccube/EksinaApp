@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "96334135581",
+    "firebase_url": "https://eksnia.firebaseio.com",
+    "project_id": "eksnia",
+    "storage_bucket": "eksnia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96334135581:android:93af5b3190e825990221f4",
+        "android_client_info": {
+          "package_name": "com.example.eksinaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96334135581-lp1edpf9cp3gh8oj68s3ni0p0rqg0dsd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBBKfWL-V0pavgAIh3yJH9gCD9YFB1J-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96334135581-lp1edpf9cp3gh8oj68s3ni0p0rqg0dsd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

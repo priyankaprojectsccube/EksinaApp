@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">EksinaApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="createAccount">créer un compte</string>
+    <string name="welcome">Bienvenue</string>
+    <string name="signUpmsg">Bonjour, inscrivez-vous pour continuer</string>
+    <string name="enterFirsrt">Entrez votre prénom</string>
+    <string name="enterLast">Entrez votre nom</string>
+    <string name="enterEmail">
+Entrez votre adresse email</string>
+    <string name="enterPass">Entrer le mot de passe</string>
+    <string name="enterConf">Entrez le mot de passe de confirmation</string>
+    <string name="agree">
+En cliquant ici vous acceptez,</string>
+    <string name="privacy">Politique de confidentialité</string>
+    <string name="and">et</string>
+    <string name="terms">Conditions générales
+</string>
+    <string name="signUp">Inscrivez-vous</string>
+    <string name="alreadyhaveAccount">
+Vous avez déjà un compte?</string>
+    <string name="signin">Connectez vous maintenant</string>
+    <string name="welcomeBack">
+Nous saluons le retour</string>
+    <string name="signInmsg">Bonjour, connectez-vous pour continuer</string>
+    <string name="signIn">Connexion</string>
+    <string name="enterMobile">Entrez votre numéro de mobile
+</string>
+    <string name="forgetPassword">Mot de passe oublié?
+</string>
+    <string name="orLogin">
+Ou connectez-vous via</string>
+    <string name="dontHaveanAcc">
+Vous n\'avez pas de compte?</string>
+    <string name="signUpnow">S\'inscrire maintenant
+</string>
+    <string name="forgetPass">Mot de passe oublié
+</string>
+    <string name="passReset">
+Réinitialisation du mot de passe</string>
+    <string name="enterRegistered">Entrez votre identifiant e-mail enregistré</string>
+    <string name="enterRegisteredAdress">
+Entrez votre adresse e-mail enregistrée</string>
+    <string name="submit">Soumettre</string>
+    <string name="setPass">
+Définissez votre mot de passe ici</string>
+    <string name="newPass">nouveau mot de passe</string>
+    <string name="ConfirmNew">"
+Confirmez votre nouveau mot de passe "</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_dashboard">Tableau de bord
+</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_display_home">MainActivity</string>
+    <string name="loading" tools:ignore="TypographyEllipsis">Chargement...
+</string>
+    <string name="wait">
+S\'il vous plaît, attendez!!</string>
+    <string name="enterFirst">entrez votre prénom
+</string>
+    <string name="enterLastName">Entrer le nom de famille
+</string>
+    <string name="enterMobileNumber">
+Entrez le numéro de mobile</string>
+    <string name="invalidamail">E-mail vide ou invalide</string>
+    <string name="invalidPass">Mot de passe incorrect</string>
+    <string name="city">Ville</string>
+    <string name="country">Pays</string>
+    <string name="read_file">Cette application a besoin d\'accéder à votre stockage de fichiers pour pouvoir lire les photos.</string>
+    <string name="enterAmount">Entrer le montant
+</string>
+    <string name="accountValidation">Validation du compte
+</string>
+    <string name="chooseId">Choisissez Id n\'importe qui</string>
+    <string name="Passport">Passeport</string>
+    <string name="id">
+Carte d\'identité</string>
+    <string name="permit">Permis de séjour</string>
+    <string name="chosePermit">
+Reçu pour un permis de séjour avec passeport du pays d\'origine ou permis de séjour expiré</string>
+    <string name="uploadId">Télécharger l\'ID
+</string>
+    <string name="selfie">Prendre Selfie</string>
+    <string name="myBen">Mes bénéficiaires</string>
+    <string name="add">Ajouter</string>
+    <string name="addCard">
+Ajouter votre carte</string>
+    <string name="name">Nom</string>
+    <string name="email">Email</string>
+    <string name="cardNumber">Numéro de carte</string>
+    <string name="month">
+Mois d\'expiration</string>
+    <string name="year">Année d\'expiration</string>
+    <string name="cvc">cvc</string>
+    <string name="addBen">Ajouter des bénéficiaires</string>
+    <string name="firstName">Prénom</string>
+    <string name="lastName">Nom de famille</string>
+    <string name="nickName">Surnom</string>
+    <string name="mobile">Numéro de portable</string>
+    <string name="accountNumber">numéro de compte bancaire</string>
+    <string name="ifsc">
+Code IFSC</string>
+    <string name="wallet">
+Identifiant de portefeuille</string>
+    <string name="buisness">Entreprise</string>
+    <string name="family">Famille</string>
+    <string name="Friend">Amie</string>
+    <string name="other">Autre</string>
+    <string name="details">Détails</string>
+    <string name="chnagePassword">Changer le mot de passe</string>
+    <string name="oldPass">
+ancien mot de passe</string>
+    <string name="eSignature">
+Signature électronique</string>
+    <string name="submitOtp">Soumettre et générer OTP</string>
+    <string name="editBen">
+Modifier les bénéficiaires</string>
+    <string name="myTransaction">
+Ma transaction</string>
+    <string name="fromDate">Partir de la date</string>
+    <string name="toDate">
+À ce jour</string>
+    <string name="sendMoney">Envoyer de l\'argent</string>
+    <string name="savedBen">
+Bénéficiaires sauvés</string>
+    <string name="myAcc">Mon compte</string>
+    <string name="profile">
+Mon profil</string>
+    <string name="paymentMehod">
+Mode de paiement</string>
+    <string name="ChangePassword">Changer le mot de passe</string>
+    <string name="Logout">Se déconnecter</string>
+    <string name="recentTransfer">Transferts récents</string>
+    <string name="yourTransfer">Votre transfert</string>
+    <string name="youSend">Vous envoyez</string>
+    <string name="amountToPay">
+Entrez le montant à payer</string>
+    <string name="benReceived">
+Vos avantages reçus</string>
+    <string name="totalTOPay">
+Total à payer:</string>
+    <string name="cashWithdraw">
+Retrait d\'espèces</string>
+    <string name="hors">
+2 heures</string>
+    <string name="bankTransfer">
+virement</string>
+    <string name="Instantenous">Instantané
+</string>
+    <string name="money">Argent mobile</string>
+    <string name="min">10 minutes</string>
+    <string name="Following">Suivante</string>
+    <string name="pro">Profil</string>
+    <string name="updateProfile">Mettre à jour le profil</string>
+    <string name="payment">Paiement</string>
+    <string name="donation">Don</string>
+    <string name="freeFess">
+Frais gratuits</string>
+    <string name="totalAmount">
+Montant total</string>
+    <string name="receive">
+vai reçoit</string>
+    <string name="pay">Payer</string>
+    <string name="newCard">
+Ajouter une nouvelle carte</string>
+    <string name="done">Terminé</string>
+    <string name="otp">Entrez OTP</string>
+    <string name="sentOtp">
+OTP envoyé dans votre numéro de mobile enregistré</string>
+    <string name="changeLang">Changer de langue</string>
+    <string name="exitDialog">Do you want to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>

@@ -1,0 +1,141 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">EksinaApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="createAccount">Create Account</string>
+    <string name="welcome">Welcome</string>
+    <string name="signUpmsg">Hello there,sign up to continue</string>
+    <string name="enterFirsrt">Enter your first name</string>
+    <string name="enterLast">Enter your last name</string>
+    <string name="enterEmail">Enter your email address</string>
+    <string name="enterPass">Enter password</string>
+    <string name="enterConf">Enter confirm password</string>
+    <string name="agree">By clicking here you agree,</string>
+    <string name="privacy">Privacy policy</string>
+    <string name="and">and</string>
+    <string name="terms">Terms of condition</string>
+    <string name="signUp">Sign up</string>
+    <string name="alreadyhaveAccount">Already have an account?</string>
+    <string name="signin">Sign in now</string>
+    <string name="welcomeBack">Welcome Back</string>
+    <string name="signInmsg">Hello there,sign in to continue</string>
+    <string name="signIn">Sign in</string>
+    <string name="enterMobile">Enter your mobile number</string>
+    <string name="forgetPassword">Forgot Password?</string>
+    <string name="orLogin">Or Login through</string>
+    <string name="dontHaveanAcc">Dont have an account?</string>
+    <string name="signUpnow">Sign up now</string>
+    <string name="forgetPass">Forgot password</string>
+    <string name="passReset">Password Reset</string>
+    <string name="enterRegistered">Enter your registered email id</string>
+    <string name="enterRegisteredAdress">Enter your email address</string>
+    <string name="submit">Submit</string>
+    <string name="setPass">Set your password here</string>
+    <string name="newPass">New Password</string>
+    <string name="ConfirmNew">"Confirm your new password "</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_display_home">MainActivity</string>
+    <string name="loading" tools:ignore="TypographyEllipsis">Loading...</string>
+    <string name="wait">Please wait!!</string>
+    <string name="enterFirst">Enter first name</string>
+    <string name="enterLastName">Enter last name</string>
+    <string name="enterMobileNumber">Enter mobile number</string>
+    <string name="invalidamail">Empty or invalid email</string>
+    <string name="invalidPass">Invalid password</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
+    <string name="read_file">This app needs access to your file storage so that it can read photos.</string>
+    <string name="enterAmount">Enter amount</string>
+    <string name="accountValidation">Account Validation</string>
+    <string name="chooseId">Choose Id anyone</string>
+    <string name="Passport">Passport</string>
+    <string name="id">Identity Card</string>
+    <string name="permit">Residance permit</string>
+    <string name="chosePermit">Receipt for a recidence permit with passport from the country of origin or expired residence permit</string>
+    <string name="uploadId">Upload Id</string>
+    <string name="selfie">Take Selfie</string>
+    <string name="myBen">My beneficiaries</string>
+    <string name="add">Add</string>
+    <string name="addCard">Add your card</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="cardNumber">Card number</string>
+    <string name="month">Expiry month</string>
+    <string name="year">Expiry year</string>
+    <string name="cvc">cvc</string>
+    <string name="addBen">Add beneficiaries</string>
+    <string name="firstName">First name</string>
+    <string name="lastName">Last name</string>
+    <string name="nickName">Nick name</string>
+    <string name="mobile">Mobile number</string>
+    <string name="accountNumber">Bank account number</string>
+    <string name="ifsc">IFSC code</string>
+    <string name="wallet">Wallet Id</string>
+    <string name="buisness">Buisness</string>
+    <string name="family">Family</string>
+    <string name="Friend">Friend</string>
+    <string name="other">Other</string>
+    <string name="details">Details</string>
+    <string name="chnagePassword">Change Password</string>
+    <string name="oldPass">Old Password</string>
+    <string name="eSignature">E-Signature</string>
+    <string name="submitOtp"><![CDATA[Submit &amp; Generate OTP]]></string>
+    <string name="editBen">Edit beneficiaries</string>
+    <string name="update" tools:ignore="MissingTranslation">Update</string>
+    <string name="myTransaction">My transaction</string>
+    <string name="fromDate">From date</string>
+    <string name="toDate">To date</string>
+    <string name="sendMoney">Send Money</string>
+    <string name="savedBen">Saved beneficiaries</string>
+    <string name="myAcc">My account</string>
+    <string name="profile">My Profile</string>
+    <string name="paymentMehod">Payment Method</string>
+    <string name="ChangePassword">Change Password</string>
+    <string name="Logout">Log out</string>
+    <string name="recentTransfer">Recent Transfers</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="yourTransfer">Your transfer</string>
+    <string name="youSend">You send</string>
+    <string name="amountToPay">Enter amount to pay</string>
+    <string name="benReceived">You benefiries received</string>
+    <string name="totalTOPay">Total to pay:</string>
+    <string name="cashWithdraw">Cash withdrawal</string>
+    <string name="hors">2 hours</string>
+    <string name="bankTransfer">Bank transfer</string>
+    <string name="Instantenous">Instantenous</string>
+    <string name="money">Wallet Transfer</string>
+    <string name="min">10 Minutes</string>
+    <string name="Following">Following</string>
+    <string name="pro">Profile</string>
+    <string name="updateProfile">Update profile</string>
+    <string name="payment">Payment</string>
+    <string name="donation">Donation</string>
+    <string name="freeFess">Free fees</string>
+    <string name="totalAmount">Total amount</string>
+    <string name="receive">vai receives</string>
+    <string name="pay">Pay</string>
+    <string name="newCard">Add new card</string>
+    <string name="done">Done</string>
+    <string name="otp">Enter OTP</string>
+    <string name="sentOtp">OTP sent in your registered mobile number</string>
+    <string name="changeLang">Change language</string>
+    <string name="facebook_app_id" tools:ignore="MissingTranslation">898988167574697</string>
+    <string name="fb_login_protocol_scheme" tools:ignore="MissingTranslation">fb898988167574697</string>
+    <string name="exitDialog">Do you want to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string-array name="language_option">
+        <item>English</item>
+        <item>Indonesian</item>
+        <item>Spanish</item>
+    </string-array>
+
+
+    <string-array name="select">
+        <item>Country</item>
+    </string-array>
+
+</resources>

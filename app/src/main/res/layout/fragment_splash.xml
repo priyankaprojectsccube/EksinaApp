@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:id="@+id/container"
+    tools:context=".view.fragments.SplashFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_background"
+        />
+    <ImageView
+        android:id="@+id/txtBox"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_180dp"
+        android:src="@drawable/ic_box"
+        android:layout_marginTop="@dimen/dimen_180dp"
+        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtBox"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:text="EKSINA"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/dimen_25sp"
+            android:textStyle="bold"
+            />
+</RelativeLayout>

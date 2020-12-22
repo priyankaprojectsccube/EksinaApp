@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/navigation_dashboard"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/title_dashboard" />
+
+        <item
+            android:id="@+id/navigation_transaction"
+            android:icon="@drawable/ic_baseline_swap_horiz_24"
+            android:title="My transaction" />
+
+        <item
+            android:id="@+id/navigation_benificiaries"
+            android:icon="@drawable/ic_baseline_group_24"
+            android:title="My Benificiaries" />
+
+        <item
+            android:id="@+id/navigation_account"
+            android:icon="@drawable/ic_baseline_account_circle_24"
+            android:title="My Account" />
+
+</menu>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/rlTransfer"
+        android:background="#ECECEC"
+        android:layout_marginTop="@dimen/dimen_10sp"
+        android:layout_marginLeft="@dimen/dimen_30dp"
+        android:layout_marginRight="@dimen/dimen_30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginLeft="@dimen/dimen_10sp"
+             android:textColor="@android:color/black"
+            android:textSize="@dimen/dimen_17sp"
+            android:text="Gionee moto"
+            />
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/dimen_10sp"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:textSize="@dimen/dimen_15sp"
+            android:text="14/2/2020"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:id="@+id/txtAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtName"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginLeft="@dimen/dimen_15sp"
+            android:textColor="@color/splashColor"
+            android:textSize="@dimen/dimen_17sp"
+            android:text="$ 925"
+            />
+
+        <TextView
+            android:id="@+id/txtTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginRight="@dimen/dimen_10sp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/txtDate"
+            android:textSize="@dimen/dimen_17sp"
+            android:text="Bank Transfer"
+            android:layout_marginBottom="@dimen/dimen_20dp"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+</RelativeLayout>

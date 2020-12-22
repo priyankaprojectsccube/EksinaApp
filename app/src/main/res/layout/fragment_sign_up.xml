@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:background="@drawable/ic_background">
+
+    <ImageView
+        android:id="@+id/imgBack"
+        android:layout_width="@dimen/dimen_35dp"
+        android:layout_height="@dimen/dimen_35dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/txtCreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/createAccount"
+        android:textStyle="bold"
+        android:layout_below="@+id/imgBack"
+        android:textSize="@dimen/dimen_22dp"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="@dimen/dimen_15dp"
+        />
+    <ScrollView
+        android:id="@+id/scrolview"
+        android:layout_below="@+id/txtCreateAccount"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_40dp"
+        android:layout_below="@+id/scrolview"
+        android:background="@drawable/curve"
+        >
+
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_40dp"
+            android:text="@string/welcome"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/dimen_22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/signUpmsg"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_below="@+id/txtWelcome"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:textSize="@dimen/dimen_17sp"
+            />
+
+       <EditText
+           android:id="@+id/edtEnterName"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="@string/enterFirsrt"
+           android:singleLine="true"
+           android:layout_marginTop="@dimen/dimen_15dp"
+           android:layout_marginLeft="@dimen/dimen_25sp"
+           android:layout_marginRight="@dimen/dimen_25sp"
+           android:padding="@dimen/dimen_15dp"
+           android:maxLines="1"
+           android:background="@drawable/rounded_border_edittext"
+           android:layout_below="@+id/txtSignUp"
+
+           />
+        <EditText
+            android:id="@+id/edtEnterLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enterLast"
+            android:singleLine="true"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginLeft="@dimen/dimen_25sp"
+            android:layout_marginRight="@dimen/dimen_25sp"
+            android:padding="@dimen/dimen_15dp"
+            android:background="@drawable/rounded_border_edittext"
+            android:layout_below="@+id/edtEnterName"
+
+            />
+        <EditText
+        android:id="@+id/edtEnterMobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enterMobile"
+        android:layout_marginTop="@dimen/dimen_15dp"
+            android:singleLine="true"
+
+            android:layout_marginLeft="@dimen/dimen_25sp"
+        android:layout_marginRight="@dimen/dimen_25sp"
+        android:padding="@dimen/dimen_15dp"
+        android:inputType="number"
+        android:background="@drawable/rounded_border_edittext"
+        android:layout_below="@+id/edtEnterLastName"
+
+        />
+        <EditText
+        android:id="@+id/edtEnterEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enterEmail"
+        android:layout_marginTop="@dimen/dimen_15dp"
+            android:maxLines="1"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+        android:layout_marginLeft="@dimen/dimen_25sp"
+        android:layout_marginRight="@dimen/dimen_25sp"
+        android:padding="@dimen/dimen_15dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:layout_below="@+id/edtEnterMobile"
+        />
+
+        <TextView
+            android:id="@+id/edtDob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter your date of birth"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginLeft="@dimen/dimen_25sp"
+            android:layout_marginRight="@dimen/dimen_25sp"
+            android:padding="@dimen/dimen_15dp"
+            android:background="@drawable/rounded_border_edittext"
+            android:layout_below="@+id/edtEnterEmail"
+            />
+
+        <EditText
+        android:id="@+id/edtEnterPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enterPass"
+            android:singleLine="true"
+
+            android:layout_marginTop="@dimen/dimen_15dp"
+        android:layout_marginLeft="@dimen/dimen_25sp"
+        android:layout_marginRight="@dimen/dimen_25sp"
+        android:padding="@dimen/dimen_15dp"
+            android:inputType="textPassword"
+        android:background="@drawable/rounded_border_edittext"
+        android:layout_below="@+id/edtDob"
+        />
+
+        <EditText
+            android:id="@+id/edtEnterConfirmPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enterConf"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginLeft="@dimen/dimen_25sp"
+            android:layout_marginRight="@dimen/dimen_25sp"
+            android:padding="@dimen/dimen_15dp"
+            android:singleLine="true"
+
+            android:inputType="textPassword"
+            android:background="@drawable/rounded_border_edittext"
+            android:layout_below="@+id/edtEnterPass"
+            />
+
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/agree"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/edtEnterConfirmPass"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:textSize="@dimen/dimen_15sp"/>
+
+        <TextView
+            android:id="@+id/txtPrivacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/checkBox1"
+            android:layout_marginTop="@dimen/dimen_20sp"
+            android:textColor="@color/splashColor"
+            android:layout_marginLeft="@dimen/dimen_6dp"
+            android:text="@string/privacy"
+            android:layout_below="@+id/edtEnterConfirmPass"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txtPrivacy"
+            android:layout_marginTop="@dimen/dimen_20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="@dimen/dimen_6dp"
+            android:text="@string/and"
+            android:layout_below="@+id/edtEnterConfirmPass"
+            />
+
+        <TextView
+            android:id="@+id/txtTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/splashColor"
+            android:layout_marginLeft="@dimen/dimen_30dp"
+            android:text="@string/terms"
+            android:layout_below="@+id/checkBox1"
+            />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="@dimen/dimen_180dp"
+            android:layout_height="match_parent"
+            android:text="@string/signUp"
+            android:layout_below="@+id/txtTerms"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:textColor="@color/splashColor"
+            android:textSize="@dimen/dimen_20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginLeft="@dimen/dimen_80dp"
+            android:background="@drawable/rounded_border_button"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txtDontHaveAnacc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSignUp"
+            android:textSize="@dimen/dimen_15sp"
+            android:text="@string/alreadyhaveAccount"
+            android:layout_marginLeft="@dimen/dimen_70dp"
+            />
+        <TextView
+            android:id="@+id/txtSignin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSignUp"
+            android:textSize="@dimen/dimen_15sp"
+            android:layout_toRightOf="@+id/txtDontHaveAnacc"
+            android:text="@string/signin"
+            android:textColor="@color/splashColor"
+            android:layout_marginBottom="@dimen/dimen_60dp"
+            android:layout_marginLeft="@dimen/dimen_4dp"
+            />
+
+    </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

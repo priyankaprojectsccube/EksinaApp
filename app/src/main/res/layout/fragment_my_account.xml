@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:background="@drawable/ic_background">
+
+    <TextView
+        android:id="@+id/txtCreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/myAcc"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/dimen_30dp"
+        android:textSize="@dimen/dimen_22dp"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="@dimen/dimen_15dp"
+        />
+    <ImageView
+        android:layout_width="@dimen/dimen_35dp"
+        android:layout_height="@dimen/dimen_35dp"
+        android:src="@drawable/ic_baseline_notifications_24"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="@dimen/dimen_10sp"
+        android:layout_marginTop="@dimen/dimen_30dp"
+        android:layout_alignParentRight="true"
+        tools:ignore="VectorDrawableCompat" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_40dp"
+            android:layout_below="@+id/txtCreateAccount"
+            android:background="@android:color/white"
+            >
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CardmyProfile"
+                    android:layout_marginTop="@dimen/dimen_30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_60dp"
+                    android:layout_marginLeft="@dimen/dimen_30dp"
+                    android:layout_marginRight="@dimen/dimen_30dp"
+                    android:padding="@dimen/dimen_17sp"
+                    android:background="@android:color/white"
+                    >
+                    <TextView
+                        android:id="@+id/MyProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile"
+                        android:textStyle="bold"
+                        android:padding="@dimen/dimen_10sp"
+                        android:layout_marginTop="@dimen/dimen_10sp"
+                        android:textSize="@dimen/dimen_17sp"
+                        android:drawableRight="@drawable/image_drawable_blue"
+                        android:textColor="@android:color/black"
+                        android:layout_marginLeft="@dimen/dimen_10sp"
+                        />
+                </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardPaymentMethod"
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_60dp"
+                android:layout_marginLeft="@dimen/dimen_30dp"
+                android:layout_marginRight="@dimen/dimen_30dp"
+                android:padding="@dimen/dimen_17sp"
+                android:layout_below="@+id/CardmyProfile"
+                android:background="@android:color/white"
+                >
+                <TextView
+                    android:id="@+id/PaymentMethod"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/paymentMehod"
+                    android:textStyle="bold"
+                    android:drawableRight="@drawable/image_drawable_blue"
+                    android:padding="@dimen/dimen_10sp"
+                    android:layout_marginTop="@dimen/dimen_10sp"
+                    android:textSize="@dimen/dimen_17sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardchnagePassword"
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_60dp"
+                android:layout_marginLeft="@dimen/dimen_30dp"
+                android:layout_marginRight="@dimen/dimen_30dp"
+                android:padding="@dimen/dimen_17sp"
+                android:layout_below="@+id/CardPaymentMethod"
+                android:background="@android:color/white"
+                >
+                <TextView
+                    android:id="@+id/ChnagePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ChangePassword"
+                    android:textStyle="bold"
+                    android:padding="@dimen/dimen_10sp"
+                    android:layout_marginTop="@dimen/dimen_10sp"
+                    android:textSize="@dimen/dimen_17sp"
+                    android:drawableRight="@drawable/image_drawable_blue"
+                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    tools:ignore="RtlCompat" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardLogout"
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_60dp"
+                android:layout_marginLeft="@dimen/dimen_30dp"
+                android:layout_marginRight="@dimen/dimen_30dp"
+                android:padding="@dimen/dimen_17sp"
+                android:layout_below="@+id/CardchnagePassword"
+                android:background="@android:color/white"
+                >
+                <TextView
+                    android:id="@+id/Logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Logout"
+                    android:textStyle="bold"
+                    android:padding="@dimen/dimen_10sp"
+                    android:layout_marginTop="@dimen/dimen_10sp"
+                    android:textSize="@dimen/dimen_17sp"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:drawableRight="@drawable/image_drawable_red" />
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+</RelativeLayout>
