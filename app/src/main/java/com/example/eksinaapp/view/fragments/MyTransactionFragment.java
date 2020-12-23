@@ -247,7 +247,7 @@ public class MyTransactionFragment extends Fragment {
                                     }else if(userProfile.getDocVarification().equals("pending") && userProfile.getTransCount()>=1){
                                         Intent intent=new Intent(getActivity(), AccountValidationActivity.class);
                                         startActivity(intent);
-                                }else if (userProfile.getDocVarification().equals("approved") && userProfile.getTransCount()>1){
+                                }else if (userProfile.getDocVarification().equals("approved")){  //&& userProfile.getTransCount()>1
                                         Intent intent=new Intent(getActivity(), YourTransferActivity.class);
                                         startActivity(intent);
                                     }

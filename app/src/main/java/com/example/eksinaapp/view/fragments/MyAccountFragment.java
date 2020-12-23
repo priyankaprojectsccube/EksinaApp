@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.eksinaapp.MainActivity;
 import com.example.eksinaapp.R;
 import com.example.eksinaapp.model.LocaleHelper;
 import com.example.eksinaapp.presenter.SharedPrefManager;

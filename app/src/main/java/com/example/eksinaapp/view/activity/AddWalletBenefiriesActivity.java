@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,6 +39,8 @@ import com.example.eksinaapp.presenter.ApiInterface;
 import com.example.eksinaapp.presenter.SharedPrefManager;
 import com.example.eksinaapp.presenter.ViewUtils;
 import com.example.eksinaapp.view.fragments.MyBenfiriesFragment;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 
 import java.util.ArrayList;
@@ -151,7 +154,9 @@ boolean isCheckedbtn;
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(AddWalletBenefiriesActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
 
@@ -331,9 +336,10 @@ boolean isCheckedbtn;
                 public void onResponse(Call<AddBenificiery> call,
                                        Response<AddBenificiery> response) {
                     pd.hide();
-
+                    Log.w("myresponse",new GsonBuilder().setPrettyPrinting().create().toJson(response));
                     try {
                         AddBenificiery addBenificiery = response.body();
+
 
                         if (addBenificiery.getStatus() != null) {
                             if (addBenificiery.getStatus().equals(200)) {

@@ -25,12 +25,25 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        navigation = findViewById(R.id.navigation);
+        if (getIntent().hasExtra("addactivity")) {
+            loadFragment(new MyBenfiriesFragment());
 
-        loadFragment(new DashboardFragment());
+            navigation.setSelectedItemId(R.id.navigation_benificiaries);
+        }else if(getIntent().hasExtra("YourTransferActivity")){
+            loadFragment(new MyTransactionFragment());
+
+            navigation.setSelectedItemId(R.id.navigation_transaction);
+        }
+        else{
+            loadFragment(new DashboardFragment());
+//            navigation.setOnNavigationItemSelectedListener(this);
+        }
+
 
         //getting bottom navigation view and attaching the listener
-          navigation = findViewById(R.id.navigation);
-          navigation.setOnNavigationItemSelectedListener(this);
+//          navigation = findViewById(R.id.navigation);
+         navigation.setOnNavigationItemSelectedListener(this);
 
 
     }

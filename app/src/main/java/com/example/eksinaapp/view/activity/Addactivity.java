@@ -2,6 +2,7 @@ package com.example.eksinaapp.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
@@ -41,6 +42,7 @@ import com.example.eksinaapp.presenter.ApiInterface;
 import com.example.eksinaapp.presenter.SharedPrefManager;
 import com.example.eksinaapp.presenter.ViewUtils;
 import com.example.eksinaapp.view.fragments.MyBenfiriesFragment;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 
 import java.util.ArrayList;
@@ -155,16 +157,22 @@ public class Addactivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+
+           //     onBackPressed();
+                Intent intent = new Intent(Addactivity.this, HomeActivity.class);
+                intent.putExtra("addactivity","one");
+
+                startActivity(intent);
             }
         });
 
         select_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0) {
-                    country = Integer.parseInt(countryList.get(position-1).getId());
-                }
+
+                    country = Integer.parseInt(countryList.get(position).getId());
+                    Log.d("Selectedcountry", String.valueOf(country));
+
             }
 
             @Override
@@ -335,7 +343,7 @@ public class Addactivity extends AppCompatActivity {
                 public void onResponse(Call<AddBenificiery> call,
                                        Response<AddBenificiery> response) {
                     pd.hide();
-
+                   // Log.w("myresponse",new GsonBuilder().setPrettyPrinting().create().toJson(response));
                     try {
                         AddBenificiery addBenificiery = response.body();
 
@@ -493,5 +501,11 @@ public class Addactivity extends AppCompatActivity {
             System.out.println(e);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

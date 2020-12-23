@@ -92,7 +92,10 @@ EditText edtEnterAmount;
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(YourTransferActivity.this, HomeActivity.class);
+                intent.putExtra("YourTransferActivity","one");
+
+                startActivity(intent);
             }
         });
 
