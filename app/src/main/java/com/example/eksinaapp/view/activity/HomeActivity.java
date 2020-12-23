@@ -34,6 +34,10 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             loadFragment(new MyTransactionFragment());
 
             navigation.setSelectedItemId(R.id.navigation_transaction);
+        }else if(getIntent().hasExtra("changepass")){
+            loadFragment(new MyAccountFragment());
+
+            navigation.setSelectedItemId(R.id.navigation_account);
         }
         else{
             loadFragment(new DashboardFragment());

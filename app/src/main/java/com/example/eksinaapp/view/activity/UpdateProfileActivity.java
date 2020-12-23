@@ -130,6 +130,7 @@ public class UpdateProfileActivity extends AppCompatActivity /*implements EasyPe
                 strEmail=txtEmail.getText().toString();
                 strMobile=txtMobile.getText().toString();
                 strDob=txtDob.getText().toString();
+                Log.d("dobt",strDob);
                 try {
                     if (validateFirstName() && validateLastname() && validateEmail() && validateMobileno()){
                        uploadImage(strFirstName,strLastName,strEmail,strMobile,strDob);

@@ -237,12 +237,13 @@ public class BenefiriesDetails extends AppCompatActivity {
                             DeleteBenefiries deleteBenefiries = response.body();
                             if (deleteBenefiries.getStatus().equals(200)) {
                                 Intent intent=new Intent(BenefiriesDetails.this,HomeActivity.class);
+                                intent.putExtra("addactivity","one");
                                 startActivity(intent);
                                 /* Fragment fragment=new DashboardFragment();
                                  replaceFragment(fragment);*/
-                                 finish();
+
                                 Toast.makeText(BenefiriesDetails.this,deleteBenefiries.getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
+
                             } else {
                                 Toast.makeText(BenefiriesDetails.this,deleteBenefiries.getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -270,5 +271,13 @@ public class BenefiriesDetails extends AppCompatActivity {
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(BenefiriesDetails.this, HomeActivity.class);
+        intent.putExtra("addactivity","one");
+
+        startActivity(intent);
     }
 }

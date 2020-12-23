@@ -8,7 +8,10 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,6 +42,7 @@ import com.google.gson.JsonIOException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,13 +54,13 @@ public class EditBenefiriesActivity extends AppCompatActivity {
     ImageView imgBack;
     Spinner select_city;
     List<Country> countryList;
-    EditText edtCity,edtEnterFirstName,edtLastName,edtNickName,edtMobile,edtBankAccount,edtIfsc,edtWalletId;
+    EditText edtCity,edtEnterFirstName,edtLastName,edtNickName,edtMobile,edtBankAccount,edtIfsc,edtWalletId,edtBankname;
     String strCity,mStrCountryName,mStrType;
     String strFirstName;
     String strLastName;
     String strNickName;
     String strMobile;
-    String strBankAccount;
+    String strBankAccount,strbankname;
     String strIfsc;
     String strWalletId;
     String strType;
@@ -73,6 +77,8 @@ public class EditBenefiriesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_edit_benefiries);
 
         btnAdd=findViewById(R.id.btnAdd);
@@ -93,6 +99,8 @@ public class EditBenefiriesActivity extends AppCompatActivity {
 
         edtBankAccount=findViewById(R.id.edtBankAccount);
 
+        edtBankname = findViewById(R.id.edtBankname);
+
         edtIfsc=findViewById(R.id.edtIfsc);
 
         edtWalletId=findViewById(R.id.edtWalletId);
@@ -111,6 +119,7 @@ public class EditBenefiriesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         ben_id = intent.getStringExtra("ben_id");
+
         loadCity();
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -141,16 +150,18 @@ public class EditBenefiriesActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent=new Intent(v.getContext(), BenefiriesDetails.class);
+                intent.putExtra( "ben_id",ben_id);
+           startActivity(intent);
             }
         });
 
         select_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0) {
-                    country = Integer.parseInt(countryList.get(position-1).getId());
-                }
+//                if (position != 0) {
+                    country = Integer.parseInt(countryList.get(position).getId());
+          //      }
             }
 
             @Override
@@ -161,9 +172,9 @@ public class EditBenefiriesActivity extends AppCompatActivity {
         wallet_id_fk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0) {
-                    walletId = Integer.parseInt(wallets.get(position-1).getId());
-                }
+//                if (position != 0) {
+                    walletId = Integer.parseInt(wallets.get(position).getId());
+                //}
             }
 
             @Override
@@ -186,13 +197,15 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                         strLastName = edtLastName.getText().toString().trim();
                         strNickName= edtNickName.getText().toString().trim();
                         strMobile=edtMobile.getText().toString();
+                        strbankname=edtBankname.getText().toString();
                         strBankAccount=edtBankAccount.getText().toString();
                         strIfsc=edtIfsc.getText().toString();
                         strWalletId=edtWalletId.getText().toString();
 
                         inputCountry=select_city.getSelectedItem().toString().trim();
                         if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName() && validateMobileno()){
-                            updateBenefiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strType,strWalletId,strBankAccount,strIfsc);
+                            Log.d("valuestosend",country+strCity+strFirstName+strLastName+strNickName+strMobile+strType+strWalletId+strBankAccount+strIfsc);
+                            updateBenefiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strType,strWalletId,strbankname,strBankAccount,strIfsc,walletId);
                         }
 
                     }
@@ -222,7 +235,7 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                     try {
                         if (response.body() != null) {
                             ShowBeneficiery showBeneficiery = response.body();
-                            if (showBeneficiery.getStatus() != null) {
+                            if (showBeneficiery.getStatus() == 200) {
                                 mStrCountryName = response.body().getCountryName();
                                 for (int i = 0; i < countryList.size(); i++) {
                                     if (mStrCountryName.equalsIgnoreCase(countryList.get(i).getCountryName())) {
@@ -231,13 +244,14 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                                 }
 
                                 mStrType = response.body().getWallet_id_fk();
-                                for (int i = 0; i < wallets.size(); i++) {
-                                    if (mStrType.equalsIgnoreCase(wallets.get(i).getCountryCode())) {
-                                        wallet_id_fk.setSelection(i);
-                                    }
-                                }
+//                                for (int i = 0; i <= wallets.size(); i++) {
+//                                    if (mStrType.equalsIgnoreCase(wallets.get(i).getId())) {
+                                        wallet_id_fk.setSelection(Integer.parseInt(mStrType));
+//                                    }
+//                                }
 
                                 strCity = response.body().getCityName();
+                                Log.d("city",strCity);
                                 edtCity.setText(strCity);
 
                                 strFirstName = response.body().getFirstName();
@@ -260,6 +274,8 @@ public class EditBenefiriesActivity extends AppCompatActivity {
 
                                 strWalletId = response.body().getWalletId();
                                 edtWalletId.setText(strWalletId);
+
+                            //    strbankname = response.body().getB
 
                                 if (response.body().getPurposeFor().equals("Buisness")) {
                                     rb_buisness.setChecked(true);
@@ -322,7 +338,7 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         if (walletResponse.getStatus()==200)
                             wallets = response.body().getWallet();
-                            wallets = response.body().getWallet();
+
 
                         List<String> listSpinner = new ArrayList<>();
                         try{
@@ -332,10 +348,12 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                         }
                         for (int i = 0; i < wallets.size(); i++) {
                             if (wallets.get(i).getCountryCode() != null && wallets.get(i).getCountryId() != null) {
-                                listSpinner.add(wallets.get(i).getCountryCode());
+                                String country = wallets.get(i).getCountryId();
+                                Log.d("scountry",country);
+                                listSpinner.add(wallets.get(i).getCountryId());
 
                                 // SharedPrefManager.storeCountry(walletResponse,Addactivity.this);
-                                wallets.get(i).getCountryCode();
+                               // wallets.get(i).getCountryId();
                             }else {
                                 Toast.makeText(EditBenefiriesActivity.this,response.message(),Toast.LENGTH_LONG).show();
                             }
@@ -343,9 +361,9 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EditBenefiriesActivity.this,
                                 android.R.layout.simple_spinner_item, listSpinner);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        wallet_id_fk.setSelection(adapter.getPosition(String.valueOf(2)));
+                      //  wallet_id_fk.setSelection(adapter.getPosition(String.valueOf(2)));
                         wallet_id_fk.setAdapter(adapter);
-                        //getBenefiries();
+                        getBenefiries();
 
                     } else {
 
@@ -392,7 +410,7 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         select_city.setSelection(adapter.getPosition(String.valueOf(7)));
                         select_city.setAdapter(adapter);
-                        getBenefiries();
+                       loadWalletType();
 
 //                        SharedPreferences prefs = getPreferences(0);
 //                        select_city.setSelection(prefs.getInt("spinnerSelection",0));
@@ -421,14 +439,14 @@ public class EditBenefiriesActivity extends AppCompatActivity {
     }
 
     private void updateBenefiries(final int country_id, String city_name, String first_name, String last_name, String nick_name,
-                                  String mobile,String purpose_for,String wallet_id,String bank_acc_no,String ifsc_code){
+                                  String mobile,String purpose_for,String wallet_id,String bankname,String bank_acc_no,String ifsc_code,int walletId){
         try {
             final int userId=0;
 
             final ProgressDialog pd = ViewUtils.getProgressBar(EditBenefiriesActivity.this,  getString(R.string.loading), getString(R.string.wait));
             ApiInterface apiService = ApiHandler.getApiService();
             final Call<EditBenefiries> loginCall = apiService.editbenefiries(Integer.parseInt(userId+ SharedPrefManager.getLoginObject(EditBenefiriesActivity.this).getUserId()), Integer.parseInt(ben_id), country_id, city_name,
-                    first_name,last_name,nick_name,mobile,purpose_for,wallet_id,bank_acc_no,ifsc_code);
+                    first_name,last_name,nick_name,mobile,purpose_for,wallet_id,bankname,bank_acc_no,ifsc_code,walletId);
 
             loginCall.enqueue(new Callback<EditBenefiries>() {
                 @SuppressLint("WrongConstant")

@@ -114,6 +114,19 @@
                 android:layout_below="@+id/edtNickName"
                 />
             <EditText
+                android:id="@+id/edtBankname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Bank Name"
+                android:layout_marginTop="@dimen/dimen_15dp"
+                android:layout_marginLeft="@dimen/dimen_25sp"
+                android:layout_marginRight="@dimen/dimen_25sp"
+                android:padding="@dimen/dimen_15dp"
+
+                android:background="@drawable/rounded_filled_border"
+                android:layout_below="@+id/edtMobile"
+                />
+            <EditText
                 android:id="@+id/edtBankAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,9 +135,9 @@
                 android:layout_marginLeft="@dimen/dimen_25sp"
                 android:layout_marginRight="@dimen/dimen_25sp"
                 android:padding="@dimen/dimen_15dp"
-                android:visibility="gone"
+
                 android:background="@drawable/rounded_filled_border"
-                android:layout_below="@+id/edtMobile"
+                android:layout_below="@+id/edtBankname"
                 />
             <EditText
                 android:id="@+id/edtIfsc"
@@ -135,7 +148,7 @@
                 android:layout_marginLeft="@dimen/dimen_25sp"
                 android:layout_marginRight="@dimen/dimen_25sp"
                 android:padding="@dimen/dimen_15dp"
-                android:visibility="gone"
+
                 android:background="@drawable/rounded_filled_border"
                 android:layout_below="@+id/edtBankAccount"
                 />

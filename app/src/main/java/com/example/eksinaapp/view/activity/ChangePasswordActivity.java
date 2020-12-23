@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.eksinaapp.R;
@@ -28,6 +29,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 EditText edtOldPass,edtNewPass,edtEnterConfirmPass;
 String strOldPass,strNewPass;
 Button submit;
+ImageView imgBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +37,15 @@ Button submit;
 
         edtOldPass=findViewById(R.id.edtOldPass);
         edtNewPass=findViewById(R.id.edtNewPass);
+        imgBack= findViewById(R.id.imgBack);
         edtEnterConfirmPass=findViewById(R.id.edtEnterConfirmPass);
 
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         submit=findViewById(R.id.btnSubmit);
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -150,6 +159,9 @@ Button submit;
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent intent = new Intent(ChangePasswordActivity.this, HomeActivity.class);
+        intent.putExtra("changepass","one");
+
+        startActivity(intent);
     }
 }

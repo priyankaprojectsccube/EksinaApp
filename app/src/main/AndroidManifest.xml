@@ -74,7 +74,8 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".view.activity.EditBenefiriesActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+         />
         <activity
             android:name=".view.activity.BenefiriesDetails"
             android:windowSoftInputMode="stateHidden" />

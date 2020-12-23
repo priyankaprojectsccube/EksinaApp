@@ -139,8 +139,10 @@ public interface ApiInterface {
                                         @Field("mobile") String mobile,
                                         @Field("purpose_for") String purpose_for,
                                         @Field("wallet_id") String wallet_id,
+                                        @Field("bank_name") String bankname,
                                         @Field("bank_acc_no") String bank_acc_no,
-                                        @Field("ifsc_code") String ifsc_code
+                                        @Field("ifsc_code") String ifsc_code,
+                                        @Field("wallet_id_fk") int wallet_id_fk
                                         );
 
     @POST("account_validation_step01")

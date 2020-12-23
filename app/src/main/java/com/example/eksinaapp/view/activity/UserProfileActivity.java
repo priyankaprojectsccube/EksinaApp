@@ -123,4 +123,12 @@ String strFirstName,strLastName,strEmail,strMobile,strDob;
             System.out.println("Thrown exception: " + exception.getMessage());
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(UserProfileActivity.this, HomeActivity.class);
+        intent.putExtra("changepass","one");
+
+        startActivity(intent);
+    }
 }
