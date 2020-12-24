@@ -33,8 +33,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BenefiriesDetails extends AppCompatActivity {
-    TextView edtCity,edtEnterFirstName,edtLastName,edtNickName,edtMobile,edtBankAccount,edtIfsc,edtWalletId,edtCountry,edtWalletType;
-    String strCity,strFirstName,strLastName,strNickName,strMobile,strBankAccount,strIfsc,strWalletId,strType,strCountry,ben_id,wallet_type;
+    TextView edtCity,edtEnterFirstName,edtLastName,edtNickName,edtMobile,edtBankName,edtBankAccount,edtIfsc,edtWalletId,edtCountry,edtWalletType;
+    String strCity,strFirstName,strLastName,strNickName,strMobile,strbankname,strBankAccount,strIfsc,strWalletId,strType,strCountry,ben_id,wallet_type;
     RadioGroup rg;
     RadioButton rb_buisness,rb_family,rb_friend,rb_other;
     ImageView imgEdit,imgDelete;
@@ -55,7 +55,7 @@ public class BenefiriesDetails extends AppCompatActivity {
         edtNickName=findViewById(R.id.edtNickName);
 
         edtMobile=findViewById(R.id.edtMobile);
-
+        edtBankName = findViewById(R.id.edtBankName);
         edtBankAccount=findViewById(R.id.edtBankAccount);
 
         edtIfsc=findViewById(R.id.edtIfsc);
@@ -161,6 +161,9 @@ public class BenefiriesDetails extends AppCompatActivity {
                                 strMobile = response.body().getMobile();
                                 edtMobile.setText(strMobile);
 
+                                strbankname = response.body().getBankName();
+                                edtBankName.setText(strbankname);
+
                                 strBankAccount = response.body().getBankAccNo();
                                 edtBankAccount.setText(strBankAccount);
 
@@ -170,7 +173,7 @@ public class BenefiriesDetails extends AppCompatActivity {
                                 strWalletId=response.body().getWalletId();
                                 edtWalletId.setText(strWalletId);
 
-                                 if (response.body().getWallet_id_fk().equals("1")){
+                                 if (response.body().getWalletIdFk().equals("1")){
                                      edtWalletType.setText("Paytm");
                                  }else {
                                      edtWalletType.setText("Orange Money");

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.eksinaapp.view.fragments.LoginFragment;
+import com.example.eksinaapp.view.fragments.MyBenfiriesFragment;
 import com.example.eksinaapp.view.fragments.SplashFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,7 +15,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         showSplash();
-    }
+
+        if (getIntent().hasExtra("login")) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container, new LoginFragment())
+
+                    .commit();
+        }
+        }
     private void showSplash() {
         getSupportFragmentManager()
                 .beginTransaction()

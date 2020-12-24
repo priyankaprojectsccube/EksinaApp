@@ -128,24 +128,37 @@
                 android:layout_below="@+id/edtNickName"
                 />
             <TextView
-                android:id="@+id/edtBankAccount"
+                android:id="@+id/edtBankName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/accountNumber"
+                android:text="Bank Name"
                 android:layout_marginTop="@dimen/dimen_15dp"
                 android:layout_marginLeft="@dimen/dimen_25sp"
-                android:visibility="gone"
+
                 android:layout_marginRight="@dimen/dimen_25sp"
                 android:padding="@dimen/dimen_15dp"
                 android:background="@drawable/rounded_filled_border"
                 android:layout_below="@+id/edtMobile"
                 />
             <TextView
+                android:id="@+id/edtBankAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/accountNumber"
+                android:layout_marginTop="@dimen/dimen_15dp"
+                android:layout_marginLeft="@dimen/dimen_25sp"
+
+                android:layout_marginRight="@dimen/dimen_25sp"
+                android:padding="@dimen/dimen_15dp"
+                android:background="@drawable/rounded_filled_border"
+                android:layout_below="@+id/edtBankName"
+                />
+            <TextView
                 android:id="@+id/edtIfsc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ifsc"
-                android:visibility="gone"
+
                 android:layout_marginTop="@dimen/dimen_15dp"
                 android:layout_marginLeft="@dimen/dimen_25sp"
                 android:layout_marginRight="@dimen/dimen_25sp"

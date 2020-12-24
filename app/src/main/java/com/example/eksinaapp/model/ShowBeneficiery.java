@@ -34,6 +34,12 @@ public class ShowBeneficiery {
     @SerializedName("wallet_id")
     @Expose
     private String walletId;
+    @SerializedName("wallet_id_fk")
+    @Expose
+    private String walletIdFk;
+    @SerializedName("bank_name")
+    @Expose
+    private String bankName;
     @SerializedName("bank_acc_no")
     @Expose
     private String bankAccNo;
@@ -46,18 +52,6 @@ public class ShowBeneficiery {
     @SerializedName("created_date")
     @Expose
     private String createdDate;
-
-    @SerializedName("wallet_id_fk")
-    @Expose
-    private String  wallet_id_fk;
-
-    public String getWallet_id_fk() {
-        return wallet_id_fk;
-    }
-
-    public void setWallet_id_fk(String wallet_id_fk) {
-        this.wallet_id_fk = wallet_id_fk;
-    }
 
     public Integer getStatus() {
         return status;
@@ -139,6 +133,22 @@ public class ShowBeneficiery {
         this.walletId = walletId;
     }
 
+    public String getWalletIdFk() {
+        return walletIdFk;
+    }
+
+    public void setWalletIdFk(String walletIdFk) {
+        this.walletIdFk = walletIdFk;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
     public String getBankAccNo() {
         return bankAccNo;
     }
@@ -170,5 +180,4 @@ public class ShowBeneficiery {
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
-
 }

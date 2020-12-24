@@ -243,7 +243,7 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                                     }
                                 }
 
-                                mStrType = response.body().getWallet_id_fk();
+                                mStrType = response.body().getWalletIdFk();
 //                                for (int i = 0; i <= wallets.size(); i++) {
 //                                    if (mStrType.equalsIgnoreCase(wallets.get(i).getId())) {
                                         wallet_id_fk.setSelection(Integer.parseInt(mStrType));
@@ -275,7 +275,8 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                                 strWalletId = response.body().getWalletId();
                                 edtWalletId.setText(strWalletId);
 
-                            //    strbankname = response.body().getB
+                                strbankname = response.body().getBankName();
+                                edtBankname.setText(strbankname);
 
                                 if (response.body().getPurposeFor().equals("Buisness")) {
                                     rb_buisness.setChecked(true);

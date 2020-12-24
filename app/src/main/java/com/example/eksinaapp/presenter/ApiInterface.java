@@ -170,15 +170,17 @@ public interface ApiInterface {
                                           @Field("ero_amount") String ero_amount
                                           );
 
+    //      @Field("user_image") String image,
+
     @POST("update_my_profile")
-    @FormUrlEncoded
-    Call<UpdateProfile> updateProfile(@Field("user_id") int user_id,
-                                      @Field("first_name") String first_name,
-                                      @Field("last_name") String last_name,
-                                      @Field("email_id") String email_id,
-                                      @Field("mobile_no") String mobile_no,
-                                      @Field("user_image") String image,
-                                      @Field("dob") String dob
+    @Multipart
+    Call<UpdateProfile> updateProfile(@Part("user_id") int user_id,
+                                      @Part("first_name") String first_name,
+                                      @Part("last_name") String last_name,
+                                      @Part("email_id") String email_id,
+                                      @Part("mobile_no") String mobile_no,
+                                      @Part MultipartBody.Part user_image,
+                                      @Part("dob") String dob
                                       );
 
     @POST("my_transactions")

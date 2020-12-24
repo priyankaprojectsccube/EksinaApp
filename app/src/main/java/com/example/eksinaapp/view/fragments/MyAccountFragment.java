@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.eksinaapp.MainActivity;
 import com.example.eksinaapp.R;
 import com.example.eksinaapp.model.LocaleHelper;
 import com.example.eksinaapp.presenter.SharedPrefManager;
@@ -83,9 +85,17 @@ public class MyAccountFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         new SharedPrefManager(mContext).logout();
                         SharedPrefManager.LogOut(getActivity());
-                         Fragment fragment=new LoginFragment();
-                        replaceFragment(fragment);
-                      getActivity().finish();
+//                         Fragment fragment=new LoginFragment();
+//                        replaceFragment(fragment);
+//                      getActivity().finish();
+                        Intent intent=new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("login","one");
+                        startActivity(intent);
+//                        LoginFragment fragment2 = new LoginFragment();
+//                        FragmentManager fragmentManager = getFragmentManager();
+//                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                        fragmentTransaction.replace(R.id.fragment_container, fragment2);
+//                        fragmentTransaction.commit();
 
 
                       /*  Intent a = new Intent(Intent.ACTION_MAIN);
