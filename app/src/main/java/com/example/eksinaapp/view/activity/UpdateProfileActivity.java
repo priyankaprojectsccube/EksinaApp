@@ -85,7 +85,7 @@ public class UpdateProfileActivity extends AppCompatActivity /*implements EasyPe
     TextView txtDob;
     ProgressDialog pd;
     Calendar c = Calendar.getInstance();
-    SimpleDateFormat dformate = new SimpleDateFormat("yyyy MM dd");
+    SimpleDateFormat dformate = new SimpleDateFormat("yyyy-MM-dd");
     Validation validation = new Validation();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,23 +219,42 @@ public class UpdateProfileActivity extends AppCompatActivity /*implements EasyPe
       //  String image = convertToString();
        // String imageName = imgTitle.getText().toString();
               ; //getRealPathFromURIPath(uri, UpdateProfileActivity.this);
+        MultipartBody.Part fileToUpload = null;
         File file;
-        if(filePath != null){
-              file = new File(filePath);
+        //Log.d("getfilepath",filePath);
+        if(filePath != null ){
+            try {
+                file = new File(filePath);
+                Log.d("Filename", file.getName());
+                if (file.exists()) {
+                    RequestBody mFile = RequestBody.create(MediaType.parse("image/*"), file);
+                    fileToUpload = MultipartBody.Part.createFormData("user_image", file.getName(), mFile);
+                }
+            }
+         catch (NullPointerException e)
+        {
+            e.printStackTrace();
+        }
         }else {
-            file = new File("");
+            RequestBody attachmentEmpty = RequestBody.create(MediaType.parse("text/plain"), "");
+
+            fileToUpload = MultipartBody.Part.createFormData("user_image", "", attachmentEmpty);
         }
 
-        Log.d("Filename " , file.getName());
-        RequestBody mFile = RequestBody.create(MediaType.parse("image/*"), file);
-        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("user_image", file.getName(), mFile);
+
+
+        RequestBody firstnamerb = RequestBody.create(MediaType.parse("text/plain"), firstName);
+        RequestBody lastnamerb = RequestBody.create(MediaType.parse("text/plain"), lastName);
+        RequestBody emailrb = RequestBody.create(MediaType.parse("text/plain"), email);
+        RequestBody numberrb = RequestBody.create(MediaType.parse("text/plain"), mobileNumber);
+        RequestBody dobrb = RequestBody.create(MediaType.parse("text/plain"), dob);
 
         int loginId=0;
       //  final ProgressDialog pd = ViewUtils.getProgressBar(UpdateProfileActivity.this,  getString(R.string.loading), getString(R.string.wait));
           pd.show();
         ApiInterface apiService = ApiHandler.getApiService();
         final Call<UpdateProfile> loginCall;
-        loginCall = apiService.updateProfile(Integer.parseInt(loginId + SharedPrefManager.getLoginObject(UpdateProfileActivity.this).getUserId()),firstName,lastName,email,mobileNumber,fileToUpload,dob);
+        loginCall = apiService.updateProfile(Integer.parseInt(loginId + SharedPrefManager.getLoginObject(UpdateProfileActivity.this).getUserId()),firstnamerb,lastnamerb,emailrb,numberrb,fileToUpload,dobrb);
         loginCall.enqueue(new Callback<UpdateProfile>(){
             @SuppressLint("WrongConstant")
             @Override
@@ -406,6 +425,7 @@ public class UpdateProfileActivity extends AppCompatActivity /*implements EasyPe
                         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
                         //Set date to textview
+
                         txtDob.setText(dformate.format(c.getTime()));
 
                     }

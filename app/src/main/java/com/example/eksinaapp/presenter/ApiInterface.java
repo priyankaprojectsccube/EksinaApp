@@ -27,6 +27,7 @@ import com.example.eksinaapp.model.UserProfile;
 import com.example.eksinaapp.model.WalletResponse;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -175,12 +176,12 @@ public interface ApiInterface {
     @POST("update_my_profile")
     @Multipart
     Call<UpdateProfile> updateProfile(@Part("user_id") int user_id,
-                                      @Part("first_name") String first_name,
-                                      @Part("last_name") String last_name,
-                                      @Part("email_id") String email_id,
-                                      @Part("mobile_no") String mobile_no,
+                                      @Part("first_name") RequestBody first_name,
+                                      @Part("last_name") RequestBody last_name,
+                                      @Part("email_id") RequestBody email_id,
+                                      @Part("mobile_no") RequestBody mobile_no,
                                       @Part MultipartBody.Part user_image,
-                                      @Part("dob") String dob
+                                      @Part("dob") RequestBody dob
                                       );
 
     @POST("my_transactions")
