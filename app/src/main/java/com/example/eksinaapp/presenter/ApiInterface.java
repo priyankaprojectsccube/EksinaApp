@@ -77,23 +77,7 @@ public interface ApiInterface {
     @GET("wallet")
     Call<WalletResponse> walletType();
 
-    @POST("add_beneficieries")
-    @FormUrlEncoded
-    Call<AddBenificiery>
-    addbenificiery(                     @Field("user_id") int user_id,
-                                        @Field("country_id") int country_id,
-                                        @Field("city_name") String city_name,
-                                        @Field("first_name") String first_name,
-                                        @Field("last_name") String last_name,
-                                        @Field("nick_name") String nick_name,
-                                        @Field("mobile") String mobile,
-                                        @Field("bank_name") String bank_name,
-                                        @Field("bank_acc_no") String bank_acc_no,
-                                        @Field("ifsc_code") String ifsc_code,
-                                        @Field("wallet_id") String wallet_id,
-                                        @Field("purpose_for") String purpose_for,
-                                        @Field("wallet_id_fk") int wallet_id_fk
-                                        );
+
 
 
 
@@ -127,7 +111,23 @@ public interface ApiInterface {
                                         @Field("old_password") String old_password,
                                         @Field("new_password") String new_password
     );
-
+    @POST("add_beneficieries")
+    @FormUrlEncoded
+    Call<AddBenificiery>
+    addbenificiery(                     @Field("user_id") int user_id,
+                                        @Field("country_id") int country_id,
+                                        @Field("city_name") String city_name,
+                                        @Field("first_name") String first_name,
+                                        @Field("last_name") String last_name,
+                                        @Field("nick_name") String nick_name,
+                                        @Field("mobile") String mobile,
+                                        @Field("bank_name") String bank_name,
+                                        @Field("bank_acc_no") String bank_acc_no,
+                                        @Field("ifsc_code") String ifsc_code,
+                                        @Field("wallet_id") String wallet_id,
+                                        @Field("wallet_id_fk") int wallet_id_fk,
+                                        @Field("purpose_for") String purpose_for
+    );
     @POST("edit_beneficieries")
     @FormUrlEncoded
     Call<EditBenefiries> editbenefiries(@Field("user_id") int user_id,
@@ -138,12 +138,12 @@ public interface ApiInterface {
                                         @Field("last_name") String last_name,
                                         @Field("nick_name") String nick_name,
                                         @Field("mobile") String mobile,
-                                        @Field("purpose_for") String purpose_for,
-                                        @Field("wallet_id") String wallet_id,
                                         @Field("bank_name") String bankname,
                                         @Field("bank_acc_no") String bank_acc_no,
                                         @Field("ifsc_code") String ifsc_code,
-                                        @Field("wallet_id_fk") int wallet_id_fk
+                                        @Field("wallet_id") String wallet_id,
+                                        @Field("wallet_id_fk") int wallet_id_fk,
+                                        @Field("purpose_for") String purpose_for
                                         );
 
     @POST("account_validation_step01")

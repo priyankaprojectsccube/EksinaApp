@@ -133,6 +133,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/mobile"
                 android:inputType="number"
+                android:maxLength="10"
                 android:layout_marginTop="@dimen/dimen_15dp"
                 android:layout_marginLeft="@dimen/dimen_25sp"
                 android:layout_marginRight="@dimen/dimen_25sp"

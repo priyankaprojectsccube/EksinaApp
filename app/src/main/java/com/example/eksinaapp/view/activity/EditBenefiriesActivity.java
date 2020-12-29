@@ -70,10 +70,10 @@ public class EditBenefiriesActivity extends AppCompatActivity {
     RadioButton rb_buisness,rb_family,rb_friend,rb_other;
     Fragment fragment;
     int country = 0;
-    int walletId=0;
+    int wallet_type=0;
     Spinner wallet_id_fk;
-    String inputCountry = String.valueOf(country);
-    String inputWallet=String.valueOf(walletId);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,9 +172,10 @@ public class EditBenefiriesActivity extends AppCompatActivity {
         wallet_id_fk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if (position != 0) {
-                    walletId = Integer.parseInt(wallets.get(position).getId());
-                //}
+                if (position != 0) {
+                wallet_type = Integer.parseInt(wallets.get(position-1).getId());
+                Log.d("wallet_type", String.valueOf(wallet_type));
+                }
             }
 
             @Override
@@ -202,11 +203,16 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                         strIfsc=edtIfsc.getText().toString();
                         strWalletId=edtWalletId.getText().toString();
 
-                        inputCountry=select_city.getSelectedItem().toString().trim();
-                        if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName() && validateMobileno()){
-                            Log.d("valuestosend",country+strCity+strFirstName+strLastName+strNickName+strMobile+strType+strWalletId+strBankAccount+strIfsc);
-                            updateBenefiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strType,strWalletId,strbankname,strBankAccount,strIfsc,walletId);
+
+                        if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() && validatebankname() && validateaccountnumber() && validateifsccode() &&
+                                validatewalletId() && validatespinnerwallet() && validateRadioGroup()){
+                            Log.d("paramstosend",country+" " +strCity+" " +strFirstName+" " +strLastName+"" +strNickName+" "+strMobile+" " +strbankname+" " +strBankAccount+" " +strIfsc+" " +strWalletId+" " +wallet_type+" " +strType);
+                            updateBenefiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,wallet_type,strType);
                         }
+//                        if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName() && validateMobileno()){
+//                            Log.d("valuestosend",country+strCity+strFirstName+strLastName+strNickName+strMobile+strType+strWalletId+strBankAccount+strIfsc);
+//                            updateBenefiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strType,strWalletId,strbankname,strBankAccount,strIfsc,walletId);
+//                        }
 
                     }
 
@@ -244,7 +250,8 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                                 }
 
                                 mStrType = response.body().getWalletIdFk();
-//                                for (int i = 0; i <= wallets.size(); i++) {
+                                Log.d("mstrtype",mStrType);
+//                                for (int i = 0; i < wallets.size(); i++) {
 //                                    if (mStrType.equalsIgnoreCase(wallets.get(i).getId())) {
                                         wallet_id_fk.setSelection(Integer.parseInt(mStrType));
 //                                    }
@@ -440,14 +447,14 @@ public class EditBenefiriesActivity extends AppCompatActivity {
     }
 
     private void updateBenefiries(final int country_id, String city_name, String first_name, String last_name, String nick_name,
-                                  String mobile,String purpose_for,String wallet_id,String bankname,String bank_acc_no,String ifsc_code,int walletId){
+                                  String mobile,String bank_name,String bank_acc_no,String ifsc_code,String wallet_id,int wallet_id_fk,String purpose_for){
         try {
             final int userId=0;
 
             final ProgressDialog pd = ViewUtils.getProgressBar(EditBenefiriesActivity.this,  getString(R.string.loading), getString(R.string.wait));
             ApiInterface apiService = ApiHandler.getApiService();
-            final Call<EditBenefiries> loginCall = apiService.editbenefiries(Integer.parseInt(userId+ SharedPrefManager.getLoginObject(EditBenefiriesActivity.this).getUserId()), Integer.parseInt(ben_id), country_id, city_name,
-                    first_name,last_name,nick_name,mobile,purpose_for,wallet_id,bankname,bank_acc_no,ifsc_code,walletId);
+            final Call<EditBenefiries> loginCall = apiService.editbenefiries(Integer.parseInt(userId+ SharedPrefManager.getLoginObject(EditBenefiriesActivity.this).getUserId()), Integer.parseInt(ben_id),
+                    country_id, city_name, first_name,last_name, nick_name, mobile,bank_name,bank_acc_no,ifsc_code,wallet_id,wallet_id_fk,purpose_for);
 
             loginCall.enqueue(new Callback<EditBenefiries>() {
                 @SuppressLint("WrongConstant")
@@ -547,6 +554,65 @@ public class EditBenefiriesActivity extends AppCompatActivity {
         String mobileNo = edtMobile.getText().toString().trim();
         if (mobileNo.isEmpty()) {
             Toast.makeText(EditBenefiriesActivity.this, getString(R.string.enterMobileNumber), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+    private boolean validateRadioGroup(){
+        if(rg.getCheckedRadioButtonId() == -1)
+        {
+            Toast.makeText(this, "Please select type", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else
+        {
+            // not checked
+        }
+
+        return true;
+    }
+
+    private boolean validatespinnerwallet() {
+        if (wallet_id_fk.getSelectedItemPosition() > 0) {
+            String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+        } else {
+            Toast.makeText(EditBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatewalletId() {
+        String walletid = edtWalletId.getText().toString().trim();
+        if (walletid.isEmpty()) {
+            Toast.makeText(EditBenefiriesActivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateifsccode() {
+        String ifsc = edtIfsc.getText().toString().trim();
+        if (ifsc.isEmpty()) {
+            Toast.makeText(EditBenefiriesActivity.this, "Please Enter IFSC", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateaccountnumber() {
+        String bankaccount = edtBankAccount.getText().toString().trim();
+        if (bankaccount.isEmpty()) {
+            Toast.makeText(EditBenefiriesActivity.this, "Please Enter Bank Account Number", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatebankname() {
+        String bankname = edtBankname.getText().toString().trim();
+        if (bankname.isEmpty()) {
+            Toast.makeText(EditBenefiriesActivity.this, "Please Enter Bank name", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

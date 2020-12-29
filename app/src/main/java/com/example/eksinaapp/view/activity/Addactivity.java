@@ -67,7 +67,7 @@ public class Addactivity extends AppCompatActivity {
     String inputCountry = String.valueOf(country);
 
     int wallet_type=0;
-    String walletName=String.valueOf(wallet_type);
+
 
     private final int REQUEST_CODE=99;
 
@@ -186,6 +186,7 @@ public class Addactivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0) {
                     wallet_type = Integer.parseInt(wallets.get(position-1).getId());
+                    Log.d("wallet_type", String.valueOf(wallet_type));
                 }
             }
 
@@ -210,10 +211,13 @@ public class Addactivity extends AppCompatActivity {
                             strIfsc=edtIfsc.getText().toString();
                             strWalletId=edtWalletId.getText().toString();
                             inputCountry=select_city.getSelectedItem().toString().trim();
-                            walletName=wallet_id_fk.getSelectedItem().toString().trim();
 
-                            if (validateRadioGroup()){
-                                addBenifiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,strType,wallet_type);
+
+
+
+                            if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() && validatebankname() && validateaccountnumber() && validateifsccode() &&
+                     validatewalletId() && validatespinnerwallet() && validateRadioGroup()){
+                                addBenifiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,wallet_type,strType);
                             }
 
 
@@ -224,6 +228,52 @@ public class Addactivity extends AppCompatActivity {
         });
         loadCity();
         loadWalletType();
+    }
+
+    private boolean validatespinnerwallet() {
+        if (wallet_id_fk.getSelectedItemPosition() > 0) {
+            String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+        } else {
+            Toast.makeText(Addactivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatewalletId() {
+        String walletid = edtWalletId.getText().toString().trim();
+        if (walletid.isEmpty()) {
+            Toast.makeText(Addactivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateifsccode() {
+        String ifsc = edtIfsc.getText().toString().trim();
+        if (ifsc.isEmpty()) {
+            Toast.makeText(Addactivity.this, "Please Enter IFSC", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateaccountnumber() {
+        String bankaccount = edtBankAccount.getText().toString().trim();
+        if (bankaccount.isEmpty()) {
+            Toast.makeText(Addactivity.this, "Please Enter Bank Account Number", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatebankname() {
+        String bankname = edtBankName.getText().toString().trim();
+        if (bankname.isEmpty()) {
+            Toast.makeText(Addactivity.this, "Please Enter Bank name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
 
@@ -327,7 +377,7 @@ public class Addactivity extends AppCompatActivity {
 
 
     private void addBenifiries(final int country_id, String city_name, String first_name, String last_name, String nick_name,
-                               String mobile,String bank_name,String bank_acc_no,String ifsc_code,String wallet_id,String purpose_for,int wallet_id_fk) {
+                               String mobile,String bank_name,String bank_acc_no,String ifsc_code,String wallet_id,int wallet_id_fk,String purpose_for) {
 
          int loginId;
          loginId=0;
@@ -335,7 +385,7 @@ public class Addactivity extends AppCompatActivity {
             final ProgressDialog pd = ViewUtils.getProgressBar(Addactivity.this,  getString(R.string.loading), getString(R.string.wait));
             ApiInterface apiService = ApiHandler.getApiService();
             final Call<AddBenificiery> loginCall = apiService.addbenificiery(Integer.parseInt(loginId + SharedPrefManager.getLoginObject(Addactivity.this).getUserId()), country_id, city_name, first_name,
-                    last_name, nick_name, mobile,bank_name,bank_acc_no,ifsc_code,wallet_id,purpose_for,wallet_id_fk);
+                    last_name, nick_name, mobile,bank_name,bank_acc_no,ifsc_code,wallet_id,wallet_id_fk,purpose_for);
 
             loginCall.enqueue(new Callback<AddBenificiery>() {
                 @SuppressLint("WrongConstant")
@@ -382,7 +432,7 @@ public class Addactivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-/*
+
     private boolean validateCountry(){
         if (select_city.getSelectedItemPosition() > 0) {
             String itemvalue = String.valueOf(select_city.getSelectedItem());
@@ -437,7 +487,7 @@ public class Addactivity extends AppCompatActivity {
             return false;
         }
         return true;
-    }*/
+    }
     private void showContacts() {
         // Check the SDK version and whether the permission is already granted or not.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {

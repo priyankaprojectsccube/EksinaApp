@@ -204,9 +204,12 @@ boolean isCheckedbtn;
                     strWalletId=edtWalletId.getText().toString();
                     walletName=wallet_id_fk.getSelectedItem().toString().trim();
                     inputCountry=select_city.getSelectedItem().toString().trim();
-                    if (validateWalletId()){
-                        addBenifiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,strType,wallet_type);
-                    }else {
+                    if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() && validatebankname() && validateaccountnumber() && validateifsccode() &&
+                            validatewalletId() && validatespinnerwallet() && validateRadioGroup()){
+                        addBenifiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,wallet_type,strType);
+                    }
+
+                    else {
 
                     }
 
@@ -222,7 +225,123 @@ boolean isCheckedbtn;
         loadWalletType();
     }
 
+    private boolean validatespinnerwallet() {
+        if (wallet_id_fk.getSelectedItemPosition() > 0) {
+            String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+        } else {
+            Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
 
+    private boolean validatewalletId() {
+        String walletid = edtWalletId.getText().toString().trim();
+        if (walletid.isEmpty()) {
+            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateifsccode() {
+        String ifsc = edtIfsc.getText().toString().trim();
+        if (ifsc.isEmpty()) {
+            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter IFSC", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateaccountnumber() {
+        String bankaccount = edtBankAccount.getText().toString().trim();
+        if (bankaccount.isEmpty()) {
+            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Bank Account Number", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatebankname() {
+        String bankname = edtBankName.getText().toString().trim();
+        if (bankname.isEmpty()) {
+            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Bank name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+
+    private boolean validateCountry(){
+        if (select_city.getSelectedItemPosition() > 0) {
+            String itemvalue = String.valueOf(select_city.getSelectedItem());
+        } else {
+            Toast.makeText(AddWalletBenefiriesActivity.this,"Please select country",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
+
+    private boolean validateCity() {
+        String city = edtCity.getText().toString().trim();
+        if (city.isEmpty()) {
+            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter city", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+    private boolean validateNickName() {
+        String nickName = edtNickName.getText().toString().trim();
+        if (nickName.isEmpty()) {
+            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Nick name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+    private boolean validateFirstName() {
+        String firstName = edtEnterFirstName.getText().toString().trim();
+        if (firstName.isEmpty()) {
+            Toast.makeText(AddWalletBenefiriesActivity.this, getString(R.string.enterFirst), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+
+
+    private boolean validateLastname() {
+        String lastName = edtLastName.getText().toString().trim();
+        if (lastName.isEmpty()) {
+            Toast.makeText(AddWalletBenefiriesActivity.this, getString(R.string.enterLastName), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+
+    private boolean validateRadioGroup(){
+        if(rg.getCheckedRadioButtonId() == -1)
+        {
+            Toast.makeText(this, "Please select type", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else
+        {
+            // not checked
+        }
+
+        return true;
+    }
+
+    private boolean validateMobileno() {
+        String mobileNo = edtMobile.getText().toString().trim();
+        if (mobileNo.isEmpty()) {
+            Toast.makeText(AddWalletBenefiriesActivity.this, getString(R.string.enterMobileNumber), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
     private void loadCity(){
         ApiInterface apiService = ApiHandler.getApiService();
         final Call<CountryResponse> loginCall = apiService.getCountry();
@@ -320,7 +439,7 @@ boolean isCheckedbtn;
     }
 
     private void addBenifiries(final int country_id, String city_name, String first_name, String last_name, String nick_name,
-                               String mobile,String bank_name,String bank_acc_no,String ifsc_code,String wallet_id,String purpose_for,int wallet_id_fk) {
+                               String mobile,String bank_name,String bank_acc_no,String ifsc_code,String wallet_id,int wallet_id_fk,String purpose_for) {
 
         int loginId;
         loginId=0;
@@ -328,7 +447,7 @@ boolean isCheckedbtn;
             final ProgressDialog pd = ViewUtils.getProgressBar(AddWalletBenefiriesActivity.this,  getString(R.string.loading), getString(R.string.wait));
             ApiInterface apiService = ApiHandler.getApiService();
             final Call<AddBenificiery> loginCall = apiService.addbenificiery(Integer.parseInt(loginId + SharedPrefManager.getLoginObject(AddWalletBenefiriesActivity.this).getUserId()), country_id, city_name, first_name,
-                    last_name, nick_name, mobile,bank_name,bank_acc_no,ifsc_code,wallet_id,purpose_for,wallet_id_fk);
+                    last_name, nick_name, mobile,bank_name,bank_acc_no,ifsc_code,wallet_id,wallet_id_fk,purpose_for);
 
             loginCall.enqueue(new Callback<AddBenificiery>() {
                 @SuppressLint("WrongConstant")
