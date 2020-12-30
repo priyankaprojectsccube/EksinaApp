@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -61,6 +62,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class UpdateProfileActivity extends AppCompatActivity /*implements EasyPermissions.PermissionCallbacks*/{
@@ -83,7 +85,7 @@ public class UpdateProfileActivity extends AppCompatActivity /*implements EasyPe
     String strFirstName,strLastName,strEmail,strMobile,strDob,filePath;
 
     TextView txtDob;
-    ProgressDialog pd;
+
     Calendar c = Calendar.getInstance();
     SimpleDateFormat dformate = new SimpleDateFormat("yyyy-MM-dd");
     Validation validation = new Validation();
@@ -96,7 +98,7 @@ public class UpdateProfileActivity extends AppCompatActivity /*implements EasyPe
 
         imgUpdatePic=findViewById(R.id.imgUpdatePic);
 
-     pd = ViewUtils.getProgressBar(UpdateProfileActivity.this,  getString(R.string.loading), getString(R.string.wait));
+
         txtFirstName=findViewById(R.id.txtFirstName);
 
         txtLastName=findViewById(R.id.txtLastName);
@@ -213,6 +215,36 @@ public class UpdateProfileActivity extends AppCompatActivity /*implements EasyPe
         }
 
     }
+    @Override
+    public void onRequestPermissionsResult(int RC, @NonNull String per[], @NonNull int[] PResult) {
+
+
+        switch (RC) {
+
+            case 1:
+
+                if (PResult.length > 0 && PResult[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+                    Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(i, IMAGE);
+
+
+                } else {
+
+                    validation.setShouldShowStatus(this, WRITE_EXTERNAL_STORAGE, "STORAGE");
+               recreate();
+
+                }
+                break;
+
+
+
+        }
+
+
+    }
+
 
     private void uploadImage(String firstName,String lastName,String email,String mobileNumber,String dob){
           // int loginId=0;
@@ -250,7 +282,7 @@ public class UpdateProfileActivity extends AppCompatActivity /*implements EasyPe
         RequestBody dobrb = RequestBody.create(MediaType.parse("text/plain"), dob);
 
         int loginId=0;
-      //  final ProgressDialog pd = ViewUtils.getProgressBar(UpdateProfileActivity.this,  getString(R.string.loading), getString(R.string.wait));
+        final ProgressDialog pd = ViewUtils.getProgressBar(UpdateProfileActivity.this,  getString(R.string.loading), getString(R.string.wait));
           pd.show();
         ApiInterface apiService = ApiHandler.getApiService();
         final Call<UpdateProfile> loginCall;
@@ -331,7 +363,7 @@ public class UpdateProfileActivity extends AppCompatActivity /*implements EasyPe
     private void showProfile() {
         try {
             int loginId=0;
-            // ProgressDialog pd = ViewUtils.getProgressBar(UpdateProfileActivity.this,  getString(R.string.loading), getString(R.string.wait));
+           final  ProgressDialog pd = ViewUtils.getProgressBar(UpdateProfileActivity.this,  getString(R.string.loading), getString(R.string.wait));
               pd.show();
             ApiInterface apiService = ApiHandler.getApiService();
             final Call<UserProfile> loginCall;

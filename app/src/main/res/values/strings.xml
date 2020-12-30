@@ -70,7 +70,7 @@
     <string name="firstName">First name</string>
     <string name="lastName">Last name</string>
     <string name="nickName">Nick name</string>
-    <string name="mobile">Mobile number</string>
+    <string name="mobile">Number</string>
     <string name="accountNumber">Bank account number</string>
     <string name="ifsc">IFSC code</string>
     <string name="wallet">Wallet Id</string>

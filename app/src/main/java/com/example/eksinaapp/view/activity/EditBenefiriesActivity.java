@@ -391,6 +391,8 @@ public class EditBenefiriesActivity extends AppCompatActivity {
         });
     }
     private void loadCity(/*String catId*/){
+        final ProgressDialog pd = ViewUtils.getProgressBar(EditBenefiriesActivity.this, getString(R.string.loading), getString(R.string.wait));
+        pd.show();
         ApiInterface apiService = ApiHandler.getApiService();
         final Call<CountryResponse> loginCall = apiService.getCountry();
         loginCall.enqueue(new Callback<CountryResponse>() {
@@ -401,6 +403,7 @@ public class EditBenefiriesActivity extends AppCompatActivity {
 
                 try {
                     if (response.isSuccessful()) {
+                        pd.hide();
                         countryList = response.body().getCountry();
                         List<String> listSpinner = new ArrayList<String>();
 
@@ -430,9 +433,11 @@ public class EditBenefiriesActivity extends AppCompatActivity {
                             select_city.setSelection(spinnerPosition);
                         }*/
                     } else {
+                        pd.hide();
                     }
 
                 }catch (NullPointerException e){
+                    pd.hide();
                     System.out.println(e);
                 }
 
@@ -441,6 +446,7 @@ public class EditBenefiriesActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<CountryResponse> call,
                                   Throwable t) {
+                pd.hide();
                 Toast.makeText(EditBenefiriesActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -452,6 +458,7 @@ public class EditBenefiriesActivity extends AppCompatActivity {
             final int userId=0;
 
             final ProgressDialog pd = ViewUtils.getProgressBar(EditBenefiriesActivity.this,  getString(R.string.loading), getString(R.string.wait));
+
             ApiInterface apiService = ApiHandler.getApiService();
             final Call<EditBenefiries> loginCall = apiService.editbenefiries(Integer.parseInt(userId+ SharedPrefManager.getLoginObject(EditBenefiriesActivity.this).getUserId()), Integer.parseInt(ben_id),
                     country_id, city_name, first_name,last_name, nick_name, mobile,bank_name,bank_acc_no,ifsc_code,wallet_id,wallet_id_fk,purpose_for);

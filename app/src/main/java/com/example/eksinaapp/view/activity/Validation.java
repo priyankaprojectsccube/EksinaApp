@@ -29,6 +29,13 @@ public class Validation {
 
 
 
+    public static void setShouldShowStatus(final Context context, final String permission,String name) {
+        SharedPreferences genPrefs = context.getSharedPreferences(name, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = genPrefs.edit();
+        editor.putBoolean(permission, true);
+        editor.commit();
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean neverAskAgainSelected(Activity activity, String permission, String name) {
