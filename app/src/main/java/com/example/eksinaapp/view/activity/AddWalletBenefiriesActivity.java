@@ -204,8 +204,9 @@ boolean isCheckedbtn;
                     strWalletId=edtWalletId.getText().toString();
                     walletName=wallet_id_fk.getSelectedItem().toString().trim();
                     inputCountry=select_city.getSelectedItem().toString().trim();
-                    if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() && validatebankname() && validateaccountnumber() && validateifsccode() &&
-                            validatewalletId() && validatespinnerwallet() && validateRadioGroup()){
+                    //validateRadioGroup
+                    if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno()  &&
+                            validatewalletId() && validatespinnerwallet() ){
                         addBenifiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,wallet_type,strType);
                     }
 
@@ -227,10 +228,11 @@ boolean isCheckedbtn;
 
     private boolean validatespinnerwallet() {
         if (wallet_id_fk.getSelectedItemPosition() > 0) {
+            validatewalletId();
             String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
         } else {
-            Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
-            return false;
+//            Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+//            return false;
         }
         return true;
     }
@@ -238,8 +240,10 @@ boolean isCheckedbtn;
     private boolean validatewalletId() {
         String walletid = edtWalletId.getText().toString().trim();
         if (walletid.isEmpty()) {
-            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
-            return false;
+//            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
+//            return false;
+        }else{
+            validatespinnerwallet();
         }
         return true;
     }
@@ -293,7 +297,7 @@ boolean isCheckedbtn;
     }
     private boolean validateNickName() {
         String nickName = edtNickName.getText().toString().trim();
-        if (nickName.isEmpty()) {
+        if (nickName.isEmpty() || nickName.length() == 10) {
             Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Nick name", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -336,7 +340,7 @@ boolean isCheckedbtn;
 
     private boolean validateMobileno() {
         String mobileNo = edtMobile.getText().toString().trim();
-        if (mobileNo.isEmpty()) {
+        if (mobileNo.isEmpty()|| mobileNo.length() < 10) {
             Toast.makeText(AddWalletBenefiriesActivity.this, getString(R.string.enterMobileNumber), Toast.LENGTH_SHORT).show();
             return false;
         }

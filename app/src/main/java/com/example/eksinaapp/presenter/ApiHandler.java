@@ -12,8 +12,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiHandler {
 
-    public static final String BASE_URL = "https://cube9projects.co.in/eksina/app/site/";
-
+    public static final String BASE_URL = "http://demo.eksina.fr/app/site/";
+//https://cube9projects.co.in/eksina/app/site/
+    //https://eksina.fr/app/site/
+    //
     private static final long HTTP_TIMEOUT = TimeUnit.SECONDS.toMillis(60);
     private static ApiInterface apiService;
     Gson gson = new GsonBuilder()

@@ -2,7 +2,6 @@ package com.example.eksinaapp.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
@@ -10,7 +9,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -18,7 +16,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eksinaapp.R;
@@ -42,7 +38,6 @@ import com.example.eksinaapp.presenter.ApiInterface;
 import com.example.eksinaapp.presenter.SharedPrefManager;
 import com.example.eksinaapp.presenter.ViewUtils;
 import com.example.eksinaapp.view.fragments.MyBenfiriesFragment;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 
 import java.util.ArrayList;
@@ -59,7 +54,7 @@ public class Addactivity extends AppCompatActivity {
     List<Country> countryList;
     List<Wallet> wallets;
     EditText edtCity,edtEnterFirstName,edtLastName,edtNickName,edtMobile,edtBankName,edtBankAccount,edtIfsc,edtWalletId;
-    String strCity,strFirstName,strLastName,strNickName,strMobile,strbankname,strBankAccount,strIfsc,strWalletId,strType;
+    String strCity,strFirstName,strLastName,strNickName,strMobile,strbankname="",strBankAccount="",strIfsc="",strWalletId="",strType="";
     RadioGroup rg;
     RadioButton rb_buisness,rb_family,rb_friend,rb_other;
     Fragment fragment;
@@ -214,9 +209,11 @@ public class Addactivity extends AppCompatActivity {
 
 
 
+//validateRadioGroup()
 
-                            if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() && validatebankname() && validateaccountnumber() && validateifsccode() &&
-                     validatewalletId() && validatespinnerwallet() && validateRadioGroup()){
+                            if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() &&
+                     validatewalletId() && validatespinnerwallet()  ){
+Log.d("values",country+""+strCity+""+strFirstName+""+strLastName+""+strNickName+""+strMobile+""+strbankname+""+strBankAccount+""+strIfsc+""+strWalletId+""+wallet_type+""+strType);
                                 addBenifiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,wallet_type,strType);
                             }
 
@@ -229,8 +226,7 @@ public class Addactivity extends AppCompatActivity {
         loadCity();
         loadWalletType();
     }
-
-    private boolean validatespinnerwallet() {
+    private boolean validatespinnerwalle() {
         if (wallet_id_fk.getSelectedItemPosition() > 0) {
             String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
         } else {
@@ -240,14 +236,42 @@ public class Addactivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean validatewalletId() {
+    private boolean validatespinnerwallet() {
+        if (wallet_id_fk.getSelectedItemPosition() > 0) {
+            validatewalletI();
+            String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+        } else {
+//            Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+//            return false;
+        }
+        return true;
+    }
+
+    private boolean validatewalletI() {
         String walletid = edtWalletId.getText().toString().trim();
         if (walletid.isEmpty()) {
             Toast.makeText(Addactivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
             return false;
+        }else{
+
         }
         return true;
     }
+
+    private boolean validatewalletId() {
+        String walletid = edtWalletId.getText().toString().trim();
+        if (walletid.isEmpty()) {
+//            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
+//            return false;
+        }else{
+            if(validatespinnerwalle()){
+
+            }
+        }
+        return true;
+    }
+
+
 
     private boolean validateifsccode() {
         String ifsc = edtIfsc.getText().toString().trim();
@@ -482,7 +506,7 @@ public class Addactivity extends AppCompatActivity {
 
     private boolean validateMobileno() {
         String mobileNo = edtMobile.getText().toString().trim();
-        if (mobileNo.isEmpty()) {
+        if (mobileNo.isEmpty()|| mobileNo.length() < 10) {
             Toast.makeText(Addactivity.this, getString(R.string.enterMobileNumber), Toast.LENGTH_SHORT).show();
             return false;
         }

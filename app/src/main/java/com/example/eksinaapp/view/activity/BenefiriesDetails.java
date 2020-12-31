@@ -175,8 +175,10 @@ public class BenefiriesDetails extends AppCompatActivity {
 
                                  if (response.body().getWalletIdFk().equals("1")){
                                      edtWalletType.setText("Paytm");
-                                 }else {
+                                 }else if(response.body().getWalletIdFk().equals("2")) {
                                      edtWalletType.setText("Orange Money");
+                                 }else{
+                                     edtWalletType.setText("Wallet Type");
                                  }
 
                                 if (response.body().getPurposeFor().equals("Buisness")){
