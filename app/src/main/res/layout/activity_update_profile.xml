@@ -63,6 +63,7 @@
         </RelativeLayout>
 
             <EditText
+                android:inputType="text"
                 android:id="@+id/txtFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,6 +74,7 @@
                 android:layout_marginRight="@dimen/dimen_25sp"
                 android:padding="@dimen/dimen_15dp"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:background="@drawable/rounded_filled_border" />
             <EditText
                 android:id="@+id/txtLastName"
@@ -83,6 +85,8 @@
                 android:layout_marginLeft="@dimen/dimen_25sp"
                 android:layout_marginRight="@dimen/dimen_25sp"
                 android:padding="@dimen/dimen_15dp"
+                android:singleLine="true"
+                android:inputType="text"
                 android:maxLines="1"
                 android:background="@drawable/rounded_filled_border"
                 android:layout_below="@+id/txtFirstName"
@@ -113,6 +117,7 @@
                 android:maxLength="10"
                 android:inputType="number"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:background="@drawable/rounded_filled_border"
                 android:layout_below="@+id/txtEmail"
                 />
@@ -126,6 +131,8 @@
                 android:layout_marginLeft="@dimen/dimen_25sp"
                 android:layout_marginRight="@dimen/dimen_25sp"
                 android:padding="@dimen/dimen_15dp"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:background="@drawable/rounded_filled_border"
                 android:layout_below="@+id/txtMobile"
                 />
