@@ -211,10 +211,16 @@ public class Addactivity extends AppCompatActivity {
 
 //validateRadioGroup()
 
-                            if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() &&
-                     validatewalletId() && validatespinnerwallet()  ){
-Log.d("values",country+""+strCity+""+strFirstName+""+strLastName+""+strNickName+""+strMobile+""+strbankname+""+strBankAccount+""+strIfsc+""+strWalletId+""+wallet_type+""+strType);
-                                addBenifiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,wallet_type,strType);
+                            if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() && validatespinnerwallet() &&  validatewalletId()  ){
+
+
+
+
+                                                Log.d("values",country+""+strCity+""+strFirstName+""+strLastName+""+strNickName+""+strMobile+""+strbankname+""+strBankAccount+""+strIfsc+""+strWalletId+""+wallet_type+""+strType);
+                                                addBenifiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,wallet_type,strType);
+
+
+
                             }
 
 
@@ -226,20 +232,21 @@ Log.d("values",country+""+strCity+""+strFirstName+""+strLastName+""+strNickName+
         loadCity();
         loadWalletType();
     }
-    private boolean validatespinnerwalle() {
-        if (wallet_id_fk.getSelectedItemPosition() > 0) {
-            String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
-        } else {
-            Toast.makeText(Addactivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
-            return false;
-        }
-        return true;
-    }
+
 
     private boolean validatespinnerwallet() {
         if (wallet_id_fk.getSelectedItemPosition() > 0) {
-            validatewalletI();
+
             String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+            String walletid = edtWalletId.getText().toString().trim();
+            if (walletid.isEmpty()) {
+                Toast.makeText(Addactivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
+                return false;
+            }else{
+
+            }
+
+
         } else {
 //            Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
 //            return false;
@@ -247,25 +254,21 @@ Log.d("values",country+""+strCity+""+strFirstName+""+strLastName+""+strNickName+
         return true;
     }
 
-    private boolean validatewalletI() {
-        String walletid = edtWalletId.getText().toString().trim();
-        if (walletid.isEmpty()) {
-            Toast.makeText(Addactivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
-            return false;
-        }else{
 
-        }
-        return true;
-    }
 
     private boolean validatewalletId() {
         String walletid = edtWalletId.getText().toString().trim();
         if (walletid.isEmpty()) {
 //            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
 //            return false;
-        }else{
-            if(validatespinnerwalle()){
-
+        }
+        else{
+            if (wallet_id_fk.getSelectedItemPosition() > 0) {
+                String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+            }
+            else {
+                Toast.makeText(Addactivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+                return false;
             }
         }
         return true;
