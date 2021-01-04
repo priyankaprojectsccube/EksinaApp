@@ -42,7 +42,7 @@
     <string name="wait">Please wait!!</string>
     <string name="enterFirst">Enter first name</string>
     <string name="enterLastName">Enter last name</string>
-    <string name="enterMobileNumber">Enter mobile number</string>
+    <string name="enterMobileNumber">Enter 10 digit mobile number</string>
     <string name="invalidamail">Empty or invalid email</string>
     <string name="invalidPass">Invalid password</string>
     <string name="city">City</string>

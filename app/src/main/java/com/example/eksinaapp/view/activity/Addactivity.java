@@ -54,7 +54,7 @@ public class Addactivity extends AppCompatActivity {
     List<Country> countryList;
     List<Wallet> wallets;
     EditText edtCity,edtEnterFirstName,edtLastName,edtNickName,edtMobile,edtBankName,edtBankAccount,edtIfsc,edtWalletId;
-    String strCity,strFirstName,strLastName,strNickName,strMobile,strbankname="",strBankAccount="",strIfsc="",strWalletId="",strType="";
+    String strCity,strFirstName,strLastName,strNickName,strMobile,strbankname="",strBankAccount="",strIfsc="",strWalletId="",strType="",strtakenumber="";
     RadioGroup rg;
     RadioButton rb_buisness,rb_family,rb_friend,rb_other;
     Fragment fragment;
@@ -118,9 +118,12 @@ public class Addactivity extends AppCompatActivity {
         imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        ContactsContract.Contacts.CONTENT_URI);
-                startActivityForResult(intent, REQUEST_CODE);
+                Intent calContctPickerIntent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                calContctPickerIntent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+                startActivityForResult(calContctPickerIntent, 1);
+//                Intent intent = new Intent(Intent.ACTION_PICK,
+//                        ContactsContract.Contacts.CONTENT_URI);
+//                startActivityForResult(intent, REQUEST_CODE);
             }
         });
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -200,7 +203,7 @@ public class Addactivity extends AppCompatActivity {
                             strFirstName = edtEnterFirstName.getText().toString().trim();
                             strLastName = edtLastName.getText().toString().trim();
                             strNickName= edtNickName.getText().toString().trim();
-                            strMobile=edtMobile.getText().toString();
+                            strMobile=edtMobile.getText().toString().trim();
                     strbankname =edtBankName.getText().toString();
                             strBankAccount=edtBankAccount.getText().toString();
                             strIfsc=edtIfsc.getText().toString();
@@ -509,10 +512,14 @@ public class Addactivity extends AppCompatActivity {
 
     private boolean validateMobileno() {
         String mobileNo = edtMobile.getText().toString().trim();
-        if (mobileNo.isEmpty()|| mobileNo.length() < 10) {
-            Toast.makeText(Addactivity.this, getString(R.string.enterMobileNumber), Toast.LENGTH_SHORT).show();
-            return false;
-        }
+
+            if (mobileNo.isEmpty()|| mobileNo.length() < 10 ) {
+                Toast.makeText(Addactivity.this, getString(R.string.enterMobileNumber), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+
+
         return true;
     }
     private void showContacts() {
@@ -539,45 +546,87 @@ public class Addactivity extends AppCompatActivity {
 
         return true;
     }
-    @Override public void onActivityResult(int reqCode, int resultCode, Intent data) {
+//    @Override public void onActivityResult(int reqCode, int resultCode, Intent data) {
+//        super.onActivityResult(reqCode, resultCode, data);
+//        try {
+//            switch (reqCode) {
+//                case (REQUEST_CODE):
+//                    if (resultCode == Activity.RESULT_OK) {
+//                        Uri contactData = data.getData();
+//                        Cursor c = getContentResolver().query
+//                                (contactData, null, null, null, null);
+//                        if (c.moveToFirst()) {
+//                            String contactId = c.getString(c.getColumnIndex
+//                                    (ContactsContract.Contacts._ID));
+//                            String hasNumber = c.getString(c.getColumnIndex
+//                                    (ContactsContract.Contacts.HAS_PHONE_NUMBER));
+//                            String num = "";
+//                            String name = "";
+//                            if (Integer.valueOf(hasNumber) == 1) {
+//                                Cursor numbers = getContentResolver().query
+//                                        (ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+//                                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId, null, null);
+//                                while (numbers.moveToNext()) {
+//                                    num = numbers.getString(numbers.getColumnIndex
+//                                            (ContactsContract.CommonDataKinds.Phone.NUMBER));
+////Toast.makeText(MainActivity.this, "Number="+num, Toast.LENGTH_LONG).show();
+//                                    name = numbers.getString(numbers.getColumnIndex
+//                                            (ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+//
+//                                    edtEnterFirstName.setText(""+name);
+//                                    edtMobile.setText(""+num);
+//                                    strtakenumber ="fromphonebook";
+//
+//                                }
+//                            }
+//                        }
+//                        break;
+//                    }
+//            }
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+//
+//    }
+
+    @Override
+    public void onActivityResult(int reqCode, int resultCode, Intent data)
+    {
         super.onActivityResult(reqCode, resultCode, data);
-        try {
-            switch (reqCode) {
-                case (REQUEST_CODE):
-                    if (resultCode == Activity.RESULT_OK) {
-                        Uri contactData = data.getData();
-                        Cursor c = getContentResolver().query
-                                (contactData, null, null, null, null);
-                        if (c.moveToFirst()) {
-                            String contactId = c.getString(c.getColumnIndex
-                                    (ContactsContract.Contacts._ID));
-                            String hasNumber = c.getString(c.getColumnIndex
-                                    (ContactsContract.Contacts.HAS_PHONE_NUMBER));
-                            String num = "";
-                            String name = "";
-                            if (Integer.valueOf(hasNumber) == 1) {
-                                Cursor numbers = getContentResolver().query
-                                        (ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
-                                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId, null, null);
-                                while (numbers.moveToNext()) {
-                                    num = numbers.getString(numbers.getColumnIndex
-                                            (ContactsContract.CommonDataKinds.Phone.NUMBER));
-//Toast.makeText(MainActivity.this, "Number="+num, Toast.LENGTH_LONG).show();
-                                    name = numbers.getString(numbers.getColumnIndex
-                                            (ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 
-                                    edtEnterFirstName.setText(""+name);
-                                    edtMobile.setText(""+num);
-                                }
+        switch (reqCode)
+        {
+            case (1) :
+                if (resultCode == Activity.RESULT_OK)
+                {
+                    Uri contctDataVar = data.getData();
+
+                    Cursor contctCursorVar = getContentResolver().query(contctDataVar, null,
+                            null, null, null);
+                    if (contctCursorVar.getCount() > 0)
+                    {
+                        while (contctCursorVar.moveToNext())
+                        {
+                            String ContctUidVar = contctCursorVar.getString(contctCursorVar.getColumnIndex(ContactsContract.Contacts._ID));
+
+                            String ContctNamVar = contctCursorVar.getString(contctCursorVar.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                            edtEnterFirstName.setText(ContctNamVar);
+                            Log.i("Names", ContctNamVar);
+
+                            if (Integer.parseInt(contctCursorVar.getString(contctCursorVar.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0)
+                            {
+                                // Query phone here. Covered next
+                                String ContctMobVar = contctCursorVar.getString(contctCursorVar.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                                ContctMobVar = ContctMobVar.replaceAll( " ","");
+                                edtMobile.setText(ContctMobVar);
+                                Log.i("Number", ContctMobVar);
                             }
-                        }
-                        break;
-                    }
-            }
-        }catch (Exception e){
-            System.out.println(e);
-        }
 
+                        }
+                    }
+                }
+                break;
+        }
     }
 
     @Override
