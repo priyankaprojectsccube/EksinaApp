@@ -211,7 +211,7 @@ public class Addactivity extends AppCompatActivity {
 
 //validateRadioGroup()
 
-                            if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() && validatespinnerwallet() &&  validatewalletId()  ){
+                            if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() &&   validatewalletId() &&  validatespinnerwallet()){
 
 
 

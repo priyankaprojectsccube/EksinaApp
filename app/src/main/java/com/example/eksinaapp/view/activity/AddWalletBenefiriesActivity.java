@@ -205,8 +205,7 @@ boolean isCheckedbtn;
                     walletName=wallet_id_fk.getSelectedItem().toString().trim();
                     inputCountry=select_city.getSelectedItem().toString().trim();
                     //validateRadioGroup
-                    if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno()  &&
-                            validatewalletId() && validatespinnerwallet() ){
+                    if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() &&   validatewalletId() &&  validatespinnerwallet()){
                         addBenifiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,wallet_type,strType);
                     }
 
@@ -228,8 +227,17 @@ boolean isCheckedbtn;
 
     private boolean validatespinnerwallet() {
         if (wallet_id_fk.getSelectedItemPosition() > 0) {
-            validatewalletId();
+
             String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+            String walletid = edtWalletId.getText().toString().trim();
+            if (walletid.isEmpty()) {
+                Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
+                return false;
+            }else{
+
+            }
+
+
         } else {
 //            Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
 //            return false;
@@ -242,8 +250,15 @@ boolean isCheckedbtn;
         if (walletid.isEmpty()) {
 //            Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
 //            return false;
-        }else{
-            validatespinnerwallet();
+        }
+        else{
+            if (wallet_id_fk.getSelectedItemPosition() > 0) {
+                String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+            }
+            else {
+                Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+                return false;
+            }
         }
         return true;
     }
