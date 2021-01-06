@@ -129,7 +129,7 @@ EditText edtEnterAmount;
         btnFollowing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateAmount() && validateConvert()){
+                if (validateAmount() && validateConvert() && validatecountry() && validateradiogroup()){
                     Intent intent=new Intent(YourTransferActivity.this,AddBenefiariesActivity.class);
                     intent.putExtra("Totalamount",strAmount);
                     intent.putExtra("amount",strEdtAmount);
@@ -189,6 +189,30 @@ EditText edtEnterAmount;
 
             }
         });
+    }
+
+    private boolean validateradiogroup() {
+        if(radioGroup.getCheckedRadioButtonId() == -1)
+        {
+            Toast.makeText(this, "Please select receipt of transfer", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else
+        {
+            // not checked
+        }
+
+        return true;
+    }
+
+    private boolean validatecountry() {
+        if (spReceived.getSelectedItemPosition() > 0) {
+            String itemvalue = String.valueOf(spReceived.getSelectedItem());
+        } else {
+            Toast.makeText(YourTransferActivity.this,"Please select country",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 
     private void showCountry() {

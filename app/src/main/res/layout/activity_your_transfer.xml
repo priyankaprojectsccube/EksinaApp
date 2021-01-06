@@ -426,7 +426,7 @@
     android:id="@+id/receipt"
     android:layout_below="@+id/totalTopay"
     android:layout_marginLeft="@dimen/dimen_40dp"
-    android:text="Receipt of tranfer"
+    android:text="Receipt of transfer"
     android:textColor="@android:color/darker_gray"
     android:layout_marginTop="@dimen/dimen_10dp"
     android:textSize="17sp"

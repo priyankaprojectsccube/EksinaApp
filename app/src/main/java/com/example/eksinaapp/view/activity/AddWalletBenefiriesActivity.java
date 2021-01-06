@@ -58,7 +58,7 @@ public class AddWalletBenefiriesActivity extends AppCompatActivity {
     List<Wallet> wallets;
     EditText edtCity,edtEnterFirstName,edtLastName,edtNickName,edtBankName,edtMobile,edtBankAccount,edtIfsc,edtWalletId;
     String strCity,strFirstName,strLastName,strNickName,strMobile,strbankname,strBankAccount,strIfsc,strWalletId,strType;
-    RadioGroup rg;
+    RadioGroup rg,rgwallet;
     RadioButton rb_buisness,rb_family,rb_friend,rb_other;
     Fragment fragment;
     int country = 0;
@@ -109,7 +109,7 @@ boolean isCheckedbtn;
 
         rb_other=findViewById(R.id.rb_other);
 
-
+        rgwallet = findViewById(R.id.rgwallet);
         try {
             showContacts();
         }catch (Exception e){
@@ -128,6 +128,23 @@ boolean isCheckedbtn;
 //                startActivityForResult(intent, REQUEST_CODE);
             }
         });
+
+        rgwallet.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup rg, int checkedId) {
+                for(int i=0; i<rg.getChildCount(); i++) {
+                    RadioButton btn = (RadioButton) rg.getChildAt(i);
+                    if(btn.getId() == checkedId) {
+                        String text = String.valueOf(btn.getId());
+                        wallet_type = Integer.parseInt(text);
+                        Log.d("getvaluewt", String.valueOf(wallet_type));
+                        // do something with text
+                        return;
+                    }
+                }
+            }
+        });
+
+
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -208,7 +225,7 @@ boolean isCheckedbtn;
                     walletName=wallet_id_fk.getSelectedItem().toString().trim();
                     inputCountry=select_city.getSelectedItem().toString().trim();
                     //validateRadioGroup
-                    if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() &&   validatewalletId() &&  validatespinnerwallet()){
+                    if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() &&   validatewalletId() &&  validatewallettype()){
                         addBenifiries(country, strCity, strFirstName, strLastName, strNickName, strMobile,strbankname,strBankAccount,strIfsc,strWalletId,wallet_type,strType);
                     }
 
@@ -226,6 +243,26 @@ boolean isCheckedbtn;
         });
         loadCity();
         loadWalletType();
+    }
+
+    private boolean validatewallettype() {
+        if(rgwallet.getCheckedRadioButtonId() == -1)
+        {
+//            Toast.makeText(this, "Please select type", Toast.LENGTH_SHORT).show();
+//            return false;
+        }
+        else
+        {
+            String walletid = edtWalletId.getText().toString().trim();
+            if (walletid.isEmpty()) {
+                Toast.makeText(AddWalletBenefiriesActivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
+                return false;
+            }else{
+
+            }
+        }
+
+        return true;
     }
 
     private boolean validatespinnerwallet() {
@@ -255,12 +292,21 @@ boolean isCheckedbtn;
 //            return false;
         }
         else{
-            if (wallet_id_fk.getSelectedItemPosition() > 0) {
-                String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
-            }
-            else {
-                Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+//            if (wallet_id_fk.getSelectedItemPosition() > 0) {
+//                String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+//            }
+//            else {
+//                Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+//                return false;
+//            }
+            if(rgwallet.getCheckedRadioButtonId() == -1)
+            {
+                Toast.makeText(this, "Please select wallet type", Toast.LENGTH_SHORT).show();
                 return false;
+            }
+            else
+            {
+                // not checked
             }
         }
         return true;
@@ -439,10 +485,18 @@ boolean isCheckedbtn;
                                 Toast.makeText(AddWalletBenefiriesActivity.this,response.message(),Toast.LENGTH_LONG).show();
                             }
                         }
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddWalletBenefiriesActivity.this,
-                                android.R.layout.simple_spinner_item, listSpinner);
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        wallet_id_fk.setAdapter(adapter);
+//                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddWalletBenefiriesActivity.this,
+//                                android.R.layout.simple_spinner_item, listSpinner);
+//                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                        wallet_id_fk.setAdapter(adapter);
+
+                        RadioButton button;
+                        for(int i = 0; i < wallets.size(); i++) {
+                            button = new RadioButton(AddWalletBenefiriesActivity.this);
+                            button.setText("" +wallets.get(i).getCountryId());
+                            button.setId(Integer.parseInt(wallets.get(i).getId()));
+                            rgwallet.addView(button);
+                        }
                     } else {
 
                     }
