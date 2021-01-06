@@ -16,9 +16,15 @@ public class ConvertCurrency {
     @SerializedName("currency")
     @Expose
     private String currency;
+    @SerializedName("fees_percent")
+    @Expose
+    private Integer feesPercent;
     @SerializedName("ero_recive_amount")
     @Expose
-    private Double eroReciveAmount;
+    private String eroReciveAmount;
+    @SerializedName("ero_total_amount")
+    @Expose
+    private Double eroTotalAmount;
     @SerializedName("ero_fees")
     @Expose
     private Double eroFees;
@@ -28,9 +34,6 @@ public class ConvertCurrency {
     @SerializedName("ben_recive_amount")
     @Expose
     private String benReciveAmount;
-    @SerializedName("ben_fees")
-    @Expose
-    private String benFees;
     @SerializedName("ben_amount")
     @Expose
     private String benAmount;
@@ -73,12 +76,28 @@ public class ConvertCurrency {
         this.currency = currency;
     }
 
-    public Double getEroReciveAmount() {
+    public Integer getFeesPercent() {
+        return feesPercent;
+    }
+
+    public void setFeesPercent(Integer feesPercent) {
+        this.feesPercent = feesPercent;
+    }
+
+    public String getEroReciveAmount() {
         return eroReciveAmount;
     }
 
-    public void setEroReciveAmount(Double eroReciveAmount) {
+    public void setEroReciveAmount(String eroReciveAmount) {
         this.eroReciveAmount = eroReciveAmount;
+    }
+
+    public Double getEroTotalAmount() {
+        return eroTotalAmount;
+    }
+
+    public void setEroTotalAmount(Double eroTotalAmount) {
+        this.eroTotalAmount = eroTotalAmount;
     }
 
     public Double getEroFees() {
@@ -103,14 +122,6 @@ public class ConvertCurrency {
 
     public void setBenReciveAmount(String benReciveAmount) {
         this.benReciveAmount = benReciveAmount;
-    }
-
-    public String getBenFees() {
-        return benFees;
-    }
-
-    public void setBenFees(String benFees) {
-        this.benFees = benFees;
     }
 
     public String getBenAmount() {

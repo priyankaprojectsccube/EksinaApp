@@ -631,7 +631,6 @@ public class Addactivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+
     }
 }

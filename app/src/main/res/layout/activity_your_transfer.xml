@@ -275,7 +275,44 @@
          android:layout_width="match_parent"
          android:layout_height= "2dp"
          android:background="@android:color/background_dark" />
+
      <LinearLayout
+         android:layout_margin="@dimen/dimen_10dp"
+         android:weightSum="2"
+         android:orientation="horizontal"
+
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+
+         <TextView
+
+             android:layout_weight="1"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:text="Via Receives"
+
+             android:textSize="@dimen/dimen_17sp"
+
+
+             android:textColor="@android:color/background_dark"
+             />
+
+         <TextView
+             android:id="@+id/viareceives"
+             android:layout_weight="1"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:maxLines="20"
+             android:maxLength="1000"
+
+             android:textSize="@dimen/dimen_17sp"
+
+             android:textColor="@android:color/background_dark"
+             />
+
+     </LinearLayout>
+     <LinearLayout
+         android:visibility="gone"
          android:layout_margin="@dimen/dimen_10dp"
          android:weightSum="2"
          android:orientation="horizontal"
@@ -312,6 +349,7 @@
      </LinearLayout>
 
      <LinearLayout
+         android:visibility="gone"
          android:layout_margin="@dimen/dimen_10dp"
          android:weightSum="2"
          android:orientation="horizontal"
@@ -348,6 +386,7 @@
      </LinearLayout>
 
      <LinearLayout
+         android:visibility="gone"
          android:layout_margin="@dimen/dimen_10dp"
          android:weightSum="2"
          android:orientation="horizontal"

@@ -48,7 +48,7 @@ Button btnFollowing;
 ImageView imgBack;
 Spinner spReceived;
 List<Country> countryList;
-TextView yousend,donation,freefees,totaltopay,yousendbelow,jtext,recevies;
+TextView yousend,donation,freefees,totaltopay,yousendbelow,jtext,recevies,viareceives;
 ConvertCurrencyAdapter convertCurrencyAdapter;
 String strAmount,inputCurrency,strEdtAmount,strTransferMode,strConvertedMode;
 RadioButton radioPassport/*,radioBank*/,radioMoney;
@@ -59,6 +59,7 @@ EditText edtEnterAmount;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_transfer);
 
+        viareceives = findViewById(R.id.viareceives);
           btnFollowing=findViewById(R.id.btnFollowing);
 
           imgBack=findViewById(R.id.imgBack);
@@ -261,16 +262,17 @@ Log.d("response",res);
                     if (response.body().getStatus() == 200) {
                         Log.d("onsuccess","onsuccess");
 //                        if (convertCurrency.getEroReciveAmount() != null) {
-                        String geterorecamt = response.body().getEroReciveAmount().toString();
-                        Log.d("geterorecamt",geterorecamt);
-                            yousend.setText(geterorecamt  + " " +  "EUR");
+
+
+                            yousend.setText(response.body().getEroReciveAmount()  + " " +  "EUR");
                             donation.setText("0 EUR");
                             freefees.setText(response.body().getEroFees().toString() + " " +  "EUR");
-                            totaltopay.setText(response.body().getEroAmount() + " " +  "EUR");
+                            totaltopay.setText(response.body().getEroTotalAmount().toString() + " " +  "EUR");
+                            viareceives.setText(response.body().getBenReciveAmount());
 
-                            yousendbelow.setText(response.body().getBenAmount());
-                            jtext.setText(response.body().getBenFees());
-                            recevies.setText(response.body().getBenReciveAmount());
+//                            yousendbelow.setText(response.body().getBenAmount());
+//                            jtext.setText(response.body().getBenFees());
+//                            recevies.setText(response.body().getBenReciveAmount());
 //                        }else {
 //                            totaltopay.setText("Failed to convert");
 //                        }
