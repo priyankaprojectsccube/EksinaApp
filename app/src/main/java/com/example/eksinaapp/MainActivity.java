@@ -27,23 +27,25 @@ public class MainActivity extends AppCompatActivity {
     private void showSplash() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.container, new SplashFragment())
-                .addToBackStack("splashScreen")
+                .replace(R.id.container, new SplashFragment())
+//                .addToBackStack("splashScreen")
                 .commit();
     }
 
     @SuppressWarnings("SingleStatementInBlock")
     @Override
     public void onBackPressed() {
-        int fragments = getSupportFragmentManager().getBackStackEntryCount();
-        if (fragments == 1) {
-            finish();
-        } else {
-            if (getFragmentManager().getBackStackEntryCount() > 1) {
-                getFragmentManager().popBackStack();
-            } else {
-                super.onBackPressed();
-            }
-        }
+//        int fragments = getSupportFragmentManager().getBackStackEntryCount();
+//        if (fragments == 1) {
+//            finish();
+//        } else {
+//            if (getFragmentManager().getBackStackEntryCount() > 1) {
+//                getFragmentManager().popBackStack();
+//            } else {
+//                super.onBackPressed();
+//            }
+//        }
     }
+
+
 }

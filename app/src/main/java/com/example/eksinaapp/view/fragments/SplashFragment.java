@@ -21,7 +21,8 @@ import com.example.eksinaapp.view.activity.HomeActivity;
 
 public class SplashFragment extends Fragment {
 
-Fragment fragment;
+    Fragment fragment;
+
     public SplashFragment() {
         // Required empty public constructor
     }
@@ -42,24 +43,24 @@ Fragment fragment;
             getActivity().getWindow().setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.splashColor)); //status bar or the time bar at the top
         }
 
-        View rootView= inflater.inflate(R.layout.fragment_splash, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_splash, container, false);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 // This method will be executed once the timer is over
-                if (SharedPrefManager.IsLogin(getActivity())){
-                    Intent intent=new Intent(getActivity(), HomeActivity.class);
+                if (SharedPrefManager.IsLogin(getActivity())) {
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
                     //finishActivity();
-                }else{
+                } else {
                     fragment = new LoginFragment();
                     replaceFragment(fragment);
-                  //  finishActivity();
+                    //  finishActivity();
                 }
             }
-        }, 1000);
-return rootView;
+        }, 100);
+        return rootView;
     }
 
     public void replaceFragment(Fragment fragment) {
@@ -69,9 +70,6 @@ return rootView;
         /*getActivity().getSupportFragmentManager().popBackStack();*/
 
     }
-    private void finishActivity() {
-        if (getActivity() != null) {
-            getActivity().finish();
-        }
-    }
+
+
 }

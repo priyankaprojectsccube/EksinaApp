@@ -50,13 +50,13 @@ import retrofit2.Response;
 public class Addactivity extends AppCompatActivity {
     Button btnAdd;
     ImageView imgBack,imgAdd;
-    Spinner select_city,wallet_id_fk;
+    Spinner select_city;
     List<Country> countryList;
     List<Wallet> wallets;
     EditText edtCity,edtEnterFirstName,edtLastName,edtNickName,edtMobile,edtBankName,edtBankAccount,edtIfsc,edtWalletId;
     String strCity,strFirstName,strLastName,strNickName,strMobile,strbankname="",strBankAccount="",strIfsc="",strWalletId="",strType="",strtakenumber="";
-    RadioGroup rg;
-    RadioButton rb_buisness,rb_family,rb_friend,rb_other;
+    RadioGroup rg,rgwallet;
+    RadioButton rb_buisness,rb_family,rb_friend,rb_other,rb_orangemoney,rb_paytm;
     Fragment fragment;
     int country = 0;
     String inputCountry = String.valueOf(country);
@@ -95,7 +95,7 @@ public class Addactivity extends AppCompatActivity {
 
         edtWalletId=findViewById(R.id.edtWalletId);
 
-        wallet_id_fk=findViewById(R.id.wallet_id_fk);
+
 
         rg=findViewById(R.id.rg);
 
@@ -106,6 +106,13 @@ public class Addactivity extends AppCompatActivity {
         rb_friend=findViewById(R.id.rb_friend);
 
         rb_other=findViewById(R.id.rb_other);
+
+        rgwallet = findViewById(R.id.rgwallet);
+
+//        rb_orangemoney = findViewById(R.id.rb_orangemoney);
+//
+//        rb_paytm = findViewById(R.id.rb_paytm);
+
 
 
            try {
@@ -124,6 +131,21 @@ public class Addactivity extends AppCompatActivity {
 //                Intent intent = new Intent(Intent.ACTION_PICK,
 //                        ContactsContract.Contacts.CONTENT_URI);
 //                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
+
+        rgwallet.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup rg, int checkedId) {
+                for(int i=0; i<rg.getChildCount(); i++) {
+                    RadioButton btn = (RadioButton) rg.getChildAt(i);
+                    if(btn.getId() == checkedId) {
+                        String text = String.valueOf(btn.getId());
+                        wallet_type = Integer.parseInt(text);
+                        Log.d("getvaluewt", String.valueOf(wallet_type));
+                        // do something with text
+                        return;
+                    }
+                }
             }
         });
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -179,20 +201,20 @@ public class Addactivity extends AppCompatActivity {
             }
         });
 
-        wallet_id_fk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0) {
-                    wallet_type = Integer.parseInt(wallets.get(position-1).getId());
-                    Log.d("wallet_type", String.valueOf(wallet_type));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        wallet_id_fk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                if (position != 0) {
+//                    wallet_type = Integer.parseInt(wallets.get(position-1).getId());
+//                    Log.d("wallet_type", String.valueOf(wallet_type));
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,7 +236,7 @@ public class Addactivity extends AppCompatActivity {
 
 //validateRadioGroup()
 
-                            if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() &&   validatewalletId() &&  validatespinnerwallet()){
+                            if (validateCountry() && validateCity() && validateFirstName() && validateLastname() && validateNickName()  && validateMobileno() &&   validatewalletId() &&  validatewallettype()){
 
 
 
@@ -237,10 +259,36 @@ public class Addactivity extends AppCompatActivity {
     }
 
 
-    private boolean validatespinnerwallet() {
-        if (wallet_id_fk.getSelectedItemPosition() > 0) {
 
-            String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+
+//    private boolean validatespinnerwallet() {
+//        if (wallet_id_fk.getSelectedItemPosition() > 0) {
+//
+//            String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+//            String walletid = edtWalletId.getText().toString().trim();
+//            if (walletid.isEmpty()) {
+//                Toast.makeText(Addactivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }else{
+//
+//            }
+//
+//
+//        } else {
+////            Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+////            return false;
+//        }
+//        return true;
+//    }
+
+    private boolean validatewallettype() {
+        if(rgwallet.getCheckedRadioButtonId() == -1)
+        {
+//            Toast.makeText(this, "Please select type", Toast.LENGTH_SHORT).show();
+//            return false;
+        }
+        else
+        {
             String walletid = edtWalletId.getText().toString().trim();
             if (walletid.isEmpty()) {
                 Toast.makeText(Addactivity.this, "Please Enter Wallet Id", Toast.LENGTH_SHORT).show();
@@ -248,16 +296,10 @@ public class Addactivity extends AppCompatActivity {
             }else{
 
             }
-
-
-        } else {
-//            Toast.makeText(AddWalletBenefiriesActivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
-//            return false;
         }
+
         return true;
     }
-
-
 
     private boolean validatewalletId() {
         String walletid = edtWalletId.getText().toString().trim();
@@ -266,12 +308,21 @@ public class Addactivity extends AppCompatActivity {
 //            return false;
         }
         else{
-            if (wallet_id_fk.getSelectedItemPosition() > 0) {
-                String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
-            }
-            else {
-                Toast.makeText(Addactivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+//            if (wallet_id_fk.getSelectedItemPosition() > 0) {
+//                String itemvalue = String.valueOf(wallet_id_fk.getSelectedItem());
+//            }
+//            else {
+//                Toast.makeText(Addactivity.this,"Please select wallet type",Toast.LENGTH_LONG).show();
+//                return false;
+//            }
+            if(rgwallet.getCheckedRadioButtonId() == -1)
+            {
+                Toast.makeText(this, "Please select wallet type", Toast.LENGTH_SHORT).show();
                 return false;
+            }
+            else
+            {
+                // not checked
             }
         }
         return true;
@@ -383,10 +434,19 @@ public class Addactivity extends AppCompatActivity {
                                 Toast.makeText(Addactivity.this,response.message(),Toast.LENGTH_LONG).show();
                             }
                         }
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Addactivity.this,
-                                android.R.layout.simple_spinner_item, listSpinner);
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        wallet_id_fk.setAdapter(adapter);
+//                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Addactivity.this,
+//                                android.R.layout.simple_spinner_item, listSpinner);
+//                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+                        RadioButton button;
+                        for(int i = 0; i < wallets.size(); i++) {
+                            button = new RadioButton(Addactivity.this);
+                            button.setText("" +wallets.get(i).getCountryId());
+                            button.setId(Integer.parseInt(wallets.get(i).getId()));
+                            rgwallet.addView(button);
+                        }
+                     //   wallet_id_fk.setAdapter(adapter);
                     } else {
 
                     }

@@ -159,7 +159,7 @@ public class MyTransactionFragment extends Fragment {
     }
 
     private void updateToTime() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         txtToDate.setText(sdf.format(myCalendar.getTime()));
         strToDate=txtToDate.getText().toString();
@@ -172,7 +172,7 @@ public class MyTransactionFragment extends Fragment {
         transaction.commit();
     }
     private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         txtFromDate.setText(sdf.format(myCalendar.getTime()));
         strFromDate=txtFromDate.getText().toString();
