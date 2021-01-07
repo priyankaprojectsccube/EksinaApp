@@ -94,11 +94,11 @@ DatePickerDialog datePickerDialog1,datePickerDialog2;
         updateToTime();
 
 
-        showDetails(strFromDate,strToDate);
+        showDetails("","");
 
-        Log.d("start",strFromDate);
+        Log.d("startdate",strFromDate);
 
-        Log.d("end",strToDate);
+        Log.d("enddate",strToDate);
 
 //        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 //            @Override
@@ -181,7 +181,7 @@ DatePickerDialog datePickerDialog1,datePickerDialog2;
 //                                txtFromDate.setText(sdf.format(myCalendar.getTime()));
 
                                     strToDate=txtToDate.getText().toString();
-
+showDetails(strFromDate,strToDate);
                                     Log.d("toDate",strToDate);
                                 }
                             }, mYear, mMonth, mDay);
