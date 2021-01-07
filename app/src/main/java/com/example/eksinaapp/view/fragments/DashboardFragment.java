@@ -44,10 +44,6 @@ public class DashboardFragment extends Fragment {
     CardDetailsAdapter cardAdapter;
     List<Datum> cardsList;
 
-    public DashboardFragment() {
-
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

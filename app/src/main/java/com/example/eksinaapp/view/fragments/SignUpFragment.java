@@ -239,11 +239,11 @@ public void onDateSet(DatePicker view, int year,int monthOfYear, int dayOfMonth)
 
     public void onBackPressed()
     {
-        SplashFragment splashFragment=new SplashFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container, splashFragment);
-        fragmentTransaction.commit();
+//        SplashFragment splashFragment=new SplashFragment();
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.container, splashFragment);
+//        fragmentTransaction.commit();
     }
 
     private void signUp(final String FirstName, String LastName, String EmailID, String mobNo,String user_password,String dob) {

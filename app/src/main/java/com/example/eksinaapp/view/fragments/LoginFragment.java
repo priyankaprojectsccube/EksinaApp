@@ -328,7 +328,7 @@ String strEmail,strPassword;
 
     public void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
+        transaction.replace(R.id.containerlogin, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -338,7 +338,7 @@ String strEmail,strPassword;
         SignUpFragment splashFragment=new SignUpFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container, splashFragment);
+        fragmentTransaction.replace(R.id.containerlogin, splashFragment);
         fragmentTransaction.commit();
     }
     private void clearUser(){

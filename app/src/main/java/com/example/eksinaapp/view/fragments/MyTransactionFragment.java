@@ -65,9 +65,7 @@ DatePickerDialog datePickerDialog1,datePickerDialog2;
     TextView txtNodata;
     UserProfile userProfile=new UserProfile();
     int nxtyear= 0, nxtmonthOfYear= 0, nxtdayOfMonth= 0;
-    public MyTransactionFragment() {
 
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

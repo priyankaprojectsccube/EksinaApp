@@ -28,9 +28,7 @@ public class MyAccountFragment extends Fragment {
    TextView txtMyProfile,txtPayment,txtChnagePass,txtLogout,mTextView;
    //Spinner mLanguage;
     ArrayAdapter<String> mAdapter;
-    public MyAccountFragment() {
-        // Required empty public constructor
-    }
+
 
 
     @Override
@@ -88,7 +86,7 @@ public class MyAccountFragment extends Fragment {
 //                         Fragment fragment=new LoginFragment();
 //                        replaceFragment(fragment);
 //                      getActivity().finish();
-                        Intent intent=new Intent(getActivity(), MainActivity.class);
+                        Intent intent=new Intent(getActivity(), SplashFragment.class);
                         intent.putExtra("login","one");
                         startActivity(intent);
 //                        LoginFragment fragment2 = new LoginFragment();

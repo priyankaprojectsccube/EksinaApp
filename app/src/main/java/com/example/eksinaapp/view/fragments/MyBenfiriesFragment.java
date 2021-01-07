@@ -45,9 +45,7 @@ public class MyBenfiriesFragment extends Fragment {
     TextView txtNodata;
     SavedBeneficiariesAdapter savedBeneficiariesAdapter;
     List<Beneficiary> beneficiaryList;
-    public MyBenfiriesFragment() {
-        // Required empty public constructor
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

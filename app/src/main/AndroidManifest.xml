@@ -101,11 +101,12 @@
         <activity
             android:name=".view.activity.AccountValidationActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
+
         <activity
             android:name=".view.activity.HomeActivity"
             android:noHistory="true"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.fragments.SplashFragment">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

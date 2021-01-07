@@ -2,6 +2,7 @@ package com.example.eksinaapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.eksinaapp.view.fragments.LoginFragment;
@@ -19,22 +20,23 @@ public class MainActivity extends AppCompatActivity {
         if (getIntent().hasExtra("login")) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.container, new LoginFragment())
-
+                    .add(R.id.containermain, new LoginFragment())
                     .commit();
         }
         }
     private void showSplash() {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, new SplashFragment())
-//                .addToBackStack("splashScreen")
-                .commit();
+        Intent intent = new Intent(MainActivity.this,SplashFragment.class);
+        startActivity(intent);
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.containermain, new SplashFragment())
+//                .addToBackStack(null)
+//                .commit();
     }
 
-    @SuppressWarnings("SingleStatementInBlock")
-    @Override
-    public void onBackPressed() {
+  //  @SuppressWarnings("SingleStatementInBlock")
+//    @Override
+//    public void onBackPressed() {
 //        int fragments = getSupportFragmentManager().getBackStackEntryCount();
 //        if (fragments == 1) {
 //            finish();
@@ -45,7 +47,13 @@ public class MainActivity extends AppCompatActivity {
 //                super.onBackPressed();
 //            }
 //        }
-    }
+//    }
+  @Override
+  public void onBackPressed() {
+      super.onBackPressed();
 
+      finishAffinity();
+
+  }
 
 }

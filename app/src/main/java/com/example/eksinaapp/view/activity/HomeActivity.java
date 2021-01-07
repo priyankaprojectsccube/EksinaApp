@@ -27,20 +27,20 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_home);
         navigation = findViewById(R.id.navigation);
         if (getIntent().hasExtra("addactivity")) {
-            loadFragment(new MyBenfiriesFragment());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyBenfiriesFragment()).commit();
 
             navigation.setSelectedItemId(R.id.navigation_benificiaries);
         }else if(getIntent().hasExtra("YourTransferActivity")){
-            loadFragment(new MyTransactionFragment());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyTransactionFragment()).commit();
 
             navigation.setSelectedItemId(R.id.navigation_transaction);
         }else if(getIntent().hasExtra("changepass")){
-            loadFragment(new MyAccountFragment());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyAccountFragment()).commit();
 
             navigation.setSelectedItemId(R.id.navigation_account);
         }
         else{
-            loadFragment(new DashboardFragment());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
 //            navigation.setOnNavigationItemSelectedListener(this);
         }
 
@@ -51,27 +51,32 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
 
     }
-        @SuppressLint("NonConstantResourceId")
+
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment = null;
 
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
-                    fragment = new DashboardFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
+                  //  fragment = new DashboardFragment();
                     break;
                 case R.id.navigation_transaction:
-                    fragment = new MyTransactionFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyTransactionFragment()).commit();
+                  //  fragment = new MyTransactionFragment();
                     break;
                 case R.id.navigation_benificiaries:
-                    fragment = new MyBenfiriesFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyBenfiriesFragment()).commit();
+                   // fragment = new MyBenfiriesFragment();
                     break;
                 case R.id.navigation_account:
-                    fragment = new MyAccountFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyAccountFragment()).commit();
+                    //fragment = new MyAccountFragment();
                     break;
             }
 
-            return loadFragment(fragment);
+         //   return loadFragment(fragment);
+            return true;
         }
 
         private boolean loadFragment(Fragment fragment) {
@@ -85,38 +90,43 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             }
             return false;
         }
-    @Override
-    public void onBackPressed() {
-       /* View overlay = findViewById(R.id.navigation);
-
-        overlay.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_FULLSCREEN);*/
-       // navigation.setVisibility(View.GONE);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setMessage(getString(R.string.exitDialog));
-        builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-              finish();
-                //if user pressed "yes", then he is allowed to exit from application
-               /* Intent a = new Intent(Intent.ACTION_MAIN);
-                a.addCategory(Intent.CATEGORY_HOME);
-                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(a);*/
-            }
-        });
-        builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //if user select "No", just cancel this dialog and continue with app
-                dialog.cancel();
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
+//    @Override
+//    public void onBackPressed() {
+//       /* View overlay = findViewById(R.id.navigation);
+//
+//        overlay.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+//                | View.SYSTEM_UI_FLAG_FULLSCREEN);*/
+//       // navigation.setVisibility(View.GONE);
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setCancelable(false);
+//        builder.setMessage(getString(R.string.exitDialog));
+//        builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//              finish();
+//                //if user pressed "yes", then he is allowed to exit from application
+//               /* Intent a = new Intent(Intent.ACTION_MAIN);
+//                a.addCategory(Intent.CATEGORY_HOME);
+//                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(a);*/
+//            }
+//        });
+//        builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                //if user select "No", just cancel this dialog and continue with app
+//                dialog.cancel();
+//            }
+//        });
+//        AlertDialog alert = builder.create();
+//        alert.show();
+//    }
+@Override
+public void onBackPressed() {
+    super.onBackPressed();
+    finishAffinity();
+}
 
     }
