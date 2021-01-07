@@ -57,13 +57,14 @@ public class MyTransactionFragment extends Fragment {
     Fragment fragment;
     TextView txtFromDate,txtToDate;
     String strFromDate,strToDate;
-    DatePickerDialog picker;
+DatePickerDialog datePickerDialog1,datePickerDialog2;
     final Calendar myCalendar = Calendar.getInstance();
     RecentTransferAdapter adapter;
     ImageView imgFromDate,imgToDate;
     List<Transaction> transactionsList;
     TextView txtNodata;
     UserProfile userProfile=new UserProfile();
+    int nxtyear= 0, nxtmonthOfYear= 0, nxtdayOfMonth= 0;
     public MyTransactionFragment() {
 
     }
@@ -99,51 +100,118 @@ public class MyTransactionFragment extends Fragment {
 
         Log.d("end",strToDate);
 
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel();
-
-            }
-        };
+//        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker view, int year, int monthOfYear,
+//                                  int dayOfMonth) {
+////                // TODO Auto-generated method stub
+//                myCalendar.set(Calendar.YEAR, year);
+//                myCalendar.set(Calendar.MONTH, monthOfYear);
+//                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//
+//                updateLabel();
+//
+//            }
+//        };
 
         imgFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(getActivity(), date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+//                new DatePickerDialog(getActivity(), date, myCalendar
+//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR); // current year
+                int mMonth = c.get(Calendar.MONTH); // current month
+                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+
+                // date picker dialog
+                datePickerDialog1 = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                                // set day of month , month and year value in the edit text
+                                txtFromDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                nxtyear = year;
+                                nxtmonthOfYear = monthOfYear + 1;
+                                nxtdayOfMonth = dayOfMonth;
+                                Log.d("calvaluefir",nxtyear+" "+nxtmonthOfYear+" "+nxtdayOfMonth);
+                               // txtFromDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+//updateLabel();
+//                                String myFormat = "yyyy-MM-dd"; //In which you need put here
+//                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+//                                txtFromDate.setText(sdf.format(myCalendar.getTime()));
+                                strFromDate=txtFromDate.getText().toString();
+                                Log.d("fromDate",strFromDate);
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog1.getDatePicker().setMinDate(System.currentTimeMillis() - 1000); //disable previous dates
+                datePickerDialog1.show();
             }
+
         });
-
-
-        final DatePickerDialog.OnDateSetListener Todate = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateToTime();
-                showDetails(strFromDate,strToDate);
-            }
-        };
-
-
         imgToDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(getActivity(), Todate, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                Log.d("calvalue",nxtyear+" "+nxtmonthOfYear+" "+nxtdayOfMonth);
+                if(nxtyear != 0 && nxtmonthOfYear != 0 && nxtdayOfMonth != 0)
+                {
+                 //   new DatePickerDialog(getActivity(), Todate, myCalendar
+//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                    final Calendar c = Calendar.getInstance();
+                    int mYear = nxtyear; // current year
+                    int mMonth = nxtmonthOfYear-1; // current month
+                    int mDay = nxtdayOfMonth; // current day
+
+                    datePickerDialog2 = new DatePickerDialog(getActivity(),
+                            new DatePickerDialog.OnDateSetListener() {
+
+                                @Override
+                                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                                    // set day of month , month and year value in the edit text
+                                    txtToDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                    // txtFromDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+//updateLabel();
+//                                String myFormat = "yyyy-MM-dd"; //In which you need put here
+//                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+//                                txtFromDate.setText(sdf.format(myCalendar.getTime()));
+
+                                    strToDate=txtToDate.getText().toString();
+
+                                    Log.d("toDate",strToDate);
+                                }
+                            }, mYear, mMonth, mDay);
+
+                    c.set(mYear, mMonth, mDay);
+                    datePickerDialog2.getDatePicker().setMinDate(c.getTimeInMillis()); //disable previous dates
+                    datePickerDialog2.show();
+                }
+                else{
+                    Toast.makeText(getActivity(),"Please Select Start Date",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
+
+//        final DatePickerDialog.OnDateSetListener Todate = new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker view, int year, int monthOfYear,
+//                                  int dayOfMonth) {
+//                // TODO Auto-generated method stub
+//                myCalendar.set(Calendar.YEAR, year);
+//                myCalendar.set(Calendar.MONTH, monthOfYear);
+//                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//                updateToTime();
+//                showDetails(strFromDate,strToDate);
+//            }
+//        };
+
+
+
         btnSendMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

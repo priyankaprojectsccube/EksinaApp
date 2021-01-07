@@ -199,7 +199,7 @@
                 android:id="@+id/edtWalletId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/wallet"
+                android:hint="Mobile Wallet Number"
                 android:layout_marginTop="@dimen/dimen_15dp"
                 android:layout_marginLeft="@dimen/dimen_25sp"
                 android:layout_marginRight="@dimen/dimen_25sp"
