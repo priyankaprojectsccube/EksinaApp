@@ -23,8 +23,7 @@ import com.example.eksinaapp.presenter.ApiHandler;
 import com.example.eksinaapp.presenter.ApiInterface;
 import com.example.eksinaapp.presenter.SharedPrefManager;
 import com.example.eksinaapp.presenter.ViewUtils;
-import com.example.eksinaapp.view.activity.PaymentActivity;
-import com.example.eksinaapp.view.adapter.CardAdapter;
+
 import com.example.eksinaapp.view.adapter.CardDetailsAdapter;
 import com.example.eksinaapp.view.adapter.RecentTransactionAdapter;
 import com.google.gson.JsonIOException;

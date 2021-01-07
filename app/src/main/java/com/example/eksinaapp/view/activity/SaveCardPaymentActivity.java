@@ -6,12 +6,14 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eksinaapp.R;
+import com.example.eksinaapp.model.ConvertCurrency;
 import com.example.eksinaapp.model.PaymentResponse;
 import com.example.eksinaapp.model.SaveCardPayment;
 import com.example.eksinaapp.presenter.ApiHandler;
@@ -27,7 +29,7 @@ import retrofit2.Response;
 
 public class SaveCardPaymentActivity extends AppCompatActivity {
     TextView amountYousend,amountDonation,amountFree,totalAmount,convertAmount,toatlaReceive;
-    String strAmount,strEdtAmount,cardNo,cvc,month,year,benId,strCardId,strTransferMode,countryId;
+    String strAmount,strEdtAmount,cardNo,cvc,month,year,benId,strCardId,strTransferMode,countryId,strcurrency;
     Button btnpay;
 
     @Override
@@ -78,13 +80,80 @@ public class SaveCardPaymentActivity extends AppCompatActivity {
 
         countryId=intent.getStringExtra("countryId");
 
-        amountYousend.setText(strEdtAmount + " " + "EUR");
+        strcurrency = intent.getStringExtra("currency");
 
-        totalAmount.setText(strEdtAmount + " " +"EUR");
+//        amountYousend.setText(strEdtAmount + " " + "EUR");
+//
+//        totalAmount.setText(strEdtAmount + " " +"EUR");
+//
+//        convertAmount.setText(strAmount);
+//
+//        toatlaReceive.setText(strAmount);
 
-        convertAmount.setText(strAmount);
+        if(strcurrency != null && !strcurrency.isEmpty()) {
+            if (strEdtAmount != null && !strEdtAmount.isEmpty()) {
+                convertCurrency(strcurrency, strEdtAmount);
+            }
+        }
+    }
 
-        toatlaReceive.setText(strAmount);
+    private void convertCurrency(String strcurrency, String strEdtAmount) {
+
+
+
+        int loginId;
+        loginId=0;
+        try {
+            final ProgressDialog pd = ViewUtils.getProgressBar(SaveCardPaymentActivity.this,  getString(R.string.loading), getString(R.string.wait));
+
+            ApiInterface apiService = ApiHandler.getApiService();
+
+            final Call<ConvertCurrency> loginCall;
+
+            loginCall = apiService.convertCurrency(Integer.parseInt(loginId+ SharedPrefManager.getLoginObject(SaveCardPaymentActivity.this).getUserId()),strcurrency,strEdtAmount);
+
+            loginCall.enqueue(new Callback<ConvertCurrency>() {
+                @SuppressWarnings("NullableProblems")
+                @SuppressLint("WrongConstant")
+                @Override
+                public void onResponse(Call<ConvertCurrency> call,
+                                       Response<ConvertCurrency> response) {
+                    pd.hide();
+
+                    ConvertCurrency convertCurrency = response.body();
+                    String res = String.valueOf(response.body());
+                    Log.d("response",res);
+                    if (response.body().getStatus() == 200) {
+                        Log.d("onsuccess","onsuccess");
+//                        if (convertCurrency.getEroReciveAmount() != null) {
+
+
+                        amountYousend.setText(response.body().getEroReciveAmount()  + " " +  "EUR");
+                        amountDonation.setText("0 EUR");
+                        amountFree.setText(response.body().getEroFees().toString() + " " +  "EUR");
+                        totalAmount.setText(response.body().getEroTotalAmount().toString() + " " +  "EUR");
+                        toatlaReceive.setText(response.body().getBenReciveAmount());
+
+//                            yousendbelow.setText(response.body().getBenAmount());
+//                            jtext.setText(response.body().getBenFees());
+//                            recevies.setText(response.body().getBenReciveAmount());
+//                        }else {
+//                            totaltopay.setText("Failed to convert");
+//                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ConvertCurrency> call,
+                                      Throwable t) {
+                    pd.hide();
+                    Log.d("error",t.toString());
+
+                }
+            });
+        } catch (JsonIOException exception) {
+            System.out.println("Thrown exception: " + exception.getMessage());
+        }
     }
 
     private void payment(String card_id,String total_amount,String beneficiaryid,String benpay,String payment_method,String country_id){

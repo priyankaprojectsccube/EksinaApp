@@ -132,6 +132,7 @@ EditText edtEnterAmount;
                 if (validateAmount() && validateConvert() && validatecountry() && validateradiogroup()){
                     Intent intent=new Intent(YourTransferActivity.this,AddBenefiariesActivity.class);
                     intent.putExtra("Totalamount",strAmount);
+                    intent.putExtra("currency",inputCurrency);
                     intent.putExtra("amount",strEdtAmount);
                     intent.putExtra("transferMode",strConvertedMode);
                     startActivity(intent);

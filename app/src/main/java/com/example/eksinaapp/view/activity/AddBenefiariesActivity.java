@@ -30,7 +30,7 @@ Button btnAdd;
 ImageView imgBack;
 Spinner savedBenefiries;
 List<Beneficiary> beneficiaryList;
-String strAmount,strEdtAmount,benId,countryId,strTransferMode;
+String strAmount,strEdtAmount,benId,countryId,strTransferMode,strcurrency;
 TextView txtBen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +81,7 @@ TextView txtBen;
         strAmount=intent.getStringExtra("Totalamount");
         strEdtAmount=intent.getStringExtra("amount");
         strTransferMode=intent.getStringExtra("transferMode");
+        strcurrency= intent.getStringExtra("currency");
 
        /* if (strTransferMode =="wallet"){*/
             loadBenefiriesWallet(strTransferMode);
@@ -97,6 +98,7 @@ TextView txtBen;
                     Intent intent=new Intent(AddBenefiariesActivity.this,PaymentActivity.class);
                     intent.putExtra("Totalamount",strAmount);
                     intent.putExtra("amount",strEdtAmount);
+                    intent.putExtra("currency",strcurrency);
                     intent.putExtra("benId",benId);
                     intent.putExtra("countryId",countryId);
                     intent.putExtra("transferMode",strTransferMode);

@@ -58,9 +58,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="@dimen/dimen_20dp"
                 android:layout_marginRight="@dimen/dimen_20dp"
-                android:textSize="@dimen/dimen_17sp"
+                android:text=""
                 android:textColor="@android:color/darker_gray"
-                android:text="000 EUR"
+                android:textSize="@dimen/dimen_17sp"
                 tools:ignore="RtlCompat" />
 
         </RelativeLayout>
@@ -93,7 +93,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:textSize="@dimen/dimen_17sp"
                 android:textColor="@android:color/darker_gray"
-                android:text="0 EUR"
+                android:text=""
                 tools:ignore="RtlCompat" />
 
         </RelativeLayout>
@@ -126,7 +126,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:textSize="@dimen/dimen_17sp"
                 android:textColor="@android:color/darker_gray"
-                android:text="0 EUR"
+                android:text=""
                 tools:ignore="RtlCompat" />
         </RelativeLayout>
         <RelativeLayout
@@ -157,7 +157,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:textSize="@dimen/dimen_17sp"
                 android:textColor="@android:color/black"
-                android:text="00 EUR"
+                android:text=""
                 tools:ignore="RtlCompat" />
 
         </RelativeLayout>
@@ -170,6 +170,7 @@
             android:background="@android:color/darker_gray" />
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rlConvertYouSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -185,7 +186,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:textSize="@dimen/dimen_17sp"
                 android:textColor="@android:color/darker_gray"
-                android:text="@string/totalAmount"
+                android:text="@string/youSend"
                 />
 
             <TextView
@@ -202,10 +203,43 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/rlReceive"
+            android:id="@+id/rlfees"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rlConvertYouSend"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            >
+
+            <TextView
+                android:id="@+id/txtFreeFees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:textSize="@dimen/dimen_17sp"
+                android:textColor="@android:color/darker_gray"
+                android:text="Via Receives"
+                />
+
+            <TextView
+                android:id="@+id/fees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:textSize="@dimen/dimen_17sp"
+                android:textColor="@android:color/darker_gray"
+                android:text=""
+                tools:ignore="RtlCompat" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rlReceive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlfees"
             android:layout_marginTop="@dimen/dimen_10dp"
             >
 
@@ -217,7 +251,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:textSize="@dimen/dimen_17sp"
                 android:textColor="@android:color/darker_gray"
-                android:text="@string/receive"
+                android:text="Receives"
                 />
 
             <TextView

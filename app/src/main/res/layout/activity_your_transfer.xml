@@ -216,7 +216,7 @@
              android:layout_weight="1"
              android:layout_width="0dp"
              android:layout_height="wrap_content"
-             android:text="Free Fees (3%)"
+             android:text="Free Fees"
              android:textSize="@dimen/dimen_17sp"
              android:textColor="@android:color/background_dark"
              />

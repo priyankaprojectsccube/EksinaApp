@@ -31,7 +31,7 @@ import retrofit2.Response;
 public class AddCardActivity extends AppCompatActivity {
       Button addCard;
       EditText edtEnterName,edtEnterEmail,edtAccountNo,edtMonth,edtyear,edtCVC;
-      String strName,strEmail,strAccount,strMonth,strYear,strCvc,strAmount,strEdtAmount,benId,strTransferMode,countryId;
+      String strName,strEmail,strAccount,strMonth,strYear,strCvc,strAmount,strEdtAmount,benId,strTransferMode,countryId,strcurrency;
       int count=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +92,7 @@ public class AddCardActivity extends AppCompatActivity {
         strTransferMode=intent.getStringExtra("transferMode");
         Log.d("benId",benId);
         countryId=intent.getStringExtra("countryId");
+        strcurrency = intent.getStringExtra("currency");
 
         addCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +137,7 @@ public class AddCardActivity extends AppCompatActivity {
                                 Toast.makeText(AddCardActivity.this, saveCard.getMessage(), Toast.LENGTH_LONG).show();
                                 Intent intent=new Intent(AddCardActivity.this,PaymentDeatilsActvity.class);
                                 intent.putExtra("Totalamount",strAmount);
+                                intent.putExtra("currency",strcurrency);
                                 intent.putExtra("amount",strEdtAmount);
                                 intent.putExtra("name",strName);
                                 intent.putExtra("email",strEmail);

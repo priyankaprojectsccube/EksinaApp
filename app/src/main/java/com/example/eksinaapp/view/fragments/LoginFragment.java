@@ -59,9 +59,9 @@ String strEmail,strPassword;
     private static final int RC_SIGN_IN = 1;
     CallbackManager callbackManager;
     String fbname,fbemail,gmailname,gmailemail;
-    SignInButton signInButton;
+    SignInButton logingoogle;
     GoogleSignInClient mGoogleSignInClient;
-    private LoginButton loginButton;
+     LoginButton loginfacebook;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -77,15 +77,15 @@ String strEmail,strPassword;
         txtForgetPassword=rootView.findViewById(R.id.txtForgetPassword);
         imgBack=rootView.findViewById(R.id.imgBack);
 
-        signInButton=rootView.findViewById(R.id.logingoogle);
-        loginButton=rootView.findViewById(R.id.loginfacebook);
+        logingoogle=(SignInButton) rootView.findViewById(R.id.logingoogle);
+        loginfacebook=(LoginButton) rootView.findViewById(R.id.loginfacebook);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        logingoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -105,13 +105,13 @@ String strEmail,strPassword;
         edtEnterPass=rootView.findViewById(R.id.edtEnterPass);
 
 
-        loginButton.setLoginBehavior(LoginBehavior.WEB_ONLY);
-        loginButton.setReadPermissions(Arrays.asList("first_name","last_name","email_id"));
+        loginfacebook.setLoginBehavior(LoginBehavior.WEB_ONLY);
+        loginfacebook.setReadPermissions(Arrays.asList("first_name","last_name","email_id"));
 
         // If you are using in a fragment, call loginButton.setFragment(this);
-          loginButton.setFragment(this);
+        loginfacebook.setFragment(this);
         // Callback registration
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        loginfacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
 

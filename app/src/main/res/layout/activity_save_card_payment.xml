@@ -60,7 +60,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:textSize="@dimen/dimen_17sp"
                 android:textColor="@android:color/darker_gray"
-                android:text="000 EUR"
+                android:text=""
                 tools:ignore="RtlCompat" />
 
         </RelativeLayout>
@@ -93,7 +93,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:textSize="@dimen/dimen_17sp"
                 android:textColor="@android:color/darker_gray"
-                android:text="0 EUR"
+                android:text=""
                 tools:ignore="RtlCompat" />
 
         </RelativeLayout>
@@ -126,7 +126,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:textSize="@dimen/dimen_17sp"
                 android:textColor="@android:color/darker_gray"
-                android:text="0 EUR"
+                android:text=""
                 tools:ignore="RtlCompat" />
         </RelativeLayout>
         <RelativeLayout
@@ -157,7 +157,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:textSize="@dimen/dimen_17sp"
                 android:textColor="@android:color/black"
-                android:text="00 EUR"
+                android:text=""
                 tools:ignore="RtlCompat" />
 
         </RelativeLayout>
@@ -170,6 +170,7 @@
             android:background="@android:color/darker_gray" />
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rlConvertYouSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -229,7 +230,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:textSize="@dimen/dimen_17sp"
                 android:textColor="@android:color/darker_gray"
-                android:text="00 EUR"
+                android:text=""
                 tools:ignore="RtlCompat" />
 
         </RelativeLayout>

@@ -38,7 +38,7 @@ public class PaymentActivity extends AppCompatActivity implements OnItemClick {
 Button btnDone;
 ImageView imgBack;
 TextView edtAddCard;
-String strAmount,strEdtAmount,benId,strTransferMode,countryId,strcardId;
+String strAmount,strEdtAmount,benId,strTransferMode,countryId,strcardId,strcurrency;
 RecyclerView rlCard;
 CardAdapter cardAdapter;
 List<Datum> cardsList;
@@ -70,6 +70,7 @@ boolean isCheckedbtn;
         benId=intent.getStringExtra("benId");
         strTransferMode=intent.getStringExtra("transferMode");
         countryId=intent.getStringExtra("countryId");
+        strcurrency = intent.getStringExtra("currency");
         Log.d("benId",benId);
 
         showCard();
@@ -80,6 +81,7 @@ boolean isCheckedbtn;
             public void onClick(View v) {
                 Intent intent=new Intent(PaymentActivity.this,AddCardActivity.class);
                 intent.putExtra("Totalamount",strAmount);
+                intent.putExtra("currency",strcurrency);
                 intent.putExtra("amount",strEdtAmount);
                 intent.putExtra("benId",benId);
                 intent.putExtra("transferMode",strTransferMode);
@@ -109,6 +111,7 @@ boolean isCheckedbtn;
                 {
                     Intent intent=new Intent(PaymentActivity.this,SaveCardPaymentActivity.class);
                     intent.putExtra("Totalamount",strAmount);
+                    intent.putExtra("currency",strcurrency);
                     intent.putExtra("amount",strEdtAmount);
                     intent.putExtra("benId",benId);
                     intent.putExtra("transferMode",strTransferMode);

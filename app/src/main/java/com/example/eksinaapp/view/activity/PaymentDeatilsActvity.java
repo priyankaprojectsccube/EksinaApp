@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eksinaapp.R;
+import com.example.eksinaapp.model.ConvertCurrency;
 import com.example.eksinaapp.model.PaymentResponse;
 import com.example.eksinaapp.model.SaveCard;
 import com.example.eksinaapp.presenter.ApiHandler;
@@ -30,14 +31,15 @@ import retrofit2.Response;
 import retrofit2.http.Field;
 
 public class PaymentDeatilsActvity extends AppCompatActivity {
-TextView amountYousend,amountDonation,amountFree,totalAmount,convertAmount,toatlaReceive;
-String strAmount,strEdtAmount,name,email,cardNo,cvc,month,year,benId,strTransferMode,countryId;
+TextView amountYousend,amountDonation,amountFree,totalAmount,convertAmount,toatlaReceive,fees;
+String strAmount,strEdtAmount,name,email,cardNo,cvc,month,year,benId,strTransferMode,countryId,strcurrency;
 Button btnpay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_deatils_actvity);
 
+        fees = findViewById(R.id.fees);
         amountYousend=findViewById(R.id.amountYousend);
 
         amountDonation=findViewById(R.id.amountDonation);
@@ -80,23 +82,82 @@ Button btnpay;
 
         benId=intent.getStringExtra("benId");
 
+        strcurrency = intent.getStringExtra("strcurrency");
+
         strTransferMode=intent.getStringExtra("transferMode");
        // Log.d("transferMode",strTransferMode);
 
         countryId=intent.getStringExtra("countryId");
        //  Log.d("countryId",countryId);
+if(strcurrency != null && !strcurrency.isEmpty()){
+    if(strEdtAmount != null && !strEdtAmount.isEmpty()){
+        convertCurrency(strcurrency,strEdtAmount);
+    }
+}
 
-        amountYousend.setText(strEdtAmount + " " + "EUR");
+    }
 
-        totalAmount.setText(strEdtAmount + " " +"EUR");
+    private void convertCurrency(String strcurrency, String strEdtAmount) {
 
-        convertAmount.setText(strAmount);
 
-        toatlaReceive.setText(strAmount);
+
+        int loginId;
+        loginId=0;
+        try {
+            final ProgressDialog pd = ViewUtils.getProgressBar(PaymentDeatilsActvity.this,  getString(R.string.loading), getString(R.string.wait));
+
+            ApiInterface apiService = ApiHandler.getApiService();
+
+            final Call<ConvertCurrency> loginCall;
+
+            loginCall = apiService.convertCurrency(Integer.parseInt(loginId+ SharedPrefManager.getLoginObject(PaymentDeatilsActvity.this).getUserId()),strcurrency,strEdtAmount);
+
+            loginCall.enqueue(new Callback<ConvertCurrency>() {
+                @SuppressWarnings("NullableProblems")
+                @SuppressLint("WrongConstant")
+                @Override
+                public void onResponse(Call<ConvertCurrency> call,
+                                       Response<ConvertCurrency> response) {
+                    pd.hide();
+
+                    ConvertCurrency convertCurrency = response.body();
+                    String res = String.valueOf(response.body());
+                    Log.d("response",res);
+                    if (response.body().getStatus() == 200) {
+                        Log.d("onsuccess","onsuccess");
+//                        if (convertCurrency.getEroReciveAmount() != null) {
+
+
+                        amountYousend.setText(response.body().getEroReciveAmount()  + " " +  "EUR");
+                        amountDonation.setText("0 EUR");
+                        amountFree.setText(response.body().getEroFees().toString() + " " +  "EUR");
+                        totalAmount.setText(response.body().getEroTotalAmount().toString() + " " +  "EUR");
+                        fees.setText(response.body().getBenReciveAmount());
+
+//                            yousendbelow.setText(response.body().getBenAmount());
+//                            jtext.setText(response.body().getBenFees());
+//                            recevies.setText(response.body().getBenReciveAmount());
+//                        }else {
+//                            totaltopay.setText("Failed to convert");
+//                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ConvertCurrency> call,
+                                      Throwable t) {
+                    pd.hide();
+                    Log.d("error",t.toString());
+
+                }
+            });
+        } catch (JsonIOException exception) {
+            System.out.println("Thrown exception: " + exception.getMessage());
+        }
     }
 
 
- private void payment(String strName,String strEmail,String strCardNo,String strCvc,String strMonth,String strYear,String strTotal,String beneficiaryid,String payment_method,String strcountryId,String benPay){
+    private void payment(String strName,String strEmail,String strCardNo,String strCvc,String strMonth,String strYear,String strTotal,String beneficiaryid,String payment_method,String strcountryId,String benPay){
      int loginId;
      loginId=0;
 
